@@ -1,0 +1,4 @@
+# Este proyecto corresponde al siguiente url de youtube:
+https://www.youtube.com/watch?v=SJwWQATQGvc&t=5244s
+
+NO se ha usado create-react-app. se ha hecho desde cero a manopla!!
