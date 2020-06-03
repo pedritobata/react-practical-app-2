@@ -2,7 +2,9 @@ import React, { Fragment } from 'react';
 import Card from '../components/card/Card';
 
 // llamada a API OMBD (mi key al final) : http://www.omdbapi.com/?i=tt3896198&apikey=fef7e18c
-const API = "http://www.omdbapi.com/?i=tt3896198&apikey=fef7e18c";
+//const API = "http://www.omdbapi.com/?i=tt3896198&apikey=fef7e18c";
+//hemos cargado la url del API a variables de entorno
+const API = process.env.API || 'http://www.omdbapi.com/?i=tt3896198&apikey=fef7e18c';
 
 class List extends React.Component{
 
