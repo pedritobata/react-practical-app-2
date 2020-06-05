@@ -1,0 +1,6 @@
+.ghost-card {
+    border: none;
+    box-shadow: 1px 1px 6px rgb(209, 197, 197) ;
+    background: #fff;
+    padding: 1em 1.5em;
+}
