@@ -1,0 +1,3 @@
+Este proyecto se basa en el del siguiente link (Leonidas Esteban)
+"React + Hooks + Redux + React Router + consumiendo un API"
+link : https://www.youtube.com/watch?v=HmoptksAeNA&t=10s

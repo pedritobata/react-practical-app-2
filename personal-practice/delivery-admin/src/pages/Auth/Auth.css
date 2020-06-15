@@ -1,0 +1,36 @@
+.auth-page{
+   display: flex;
+  /*  align-items: stretch; */
+}
+
+.halfScreen{
+    background: #1fb6ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    height: 100vh;
+}
+
+.leftScreen{
+    background: #1fb6ff;
+}
+
+.great-title{
+    font-size: 3em;
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: normal;
+    margin: 0;
+    margin-bottom: .3em;
+}
+
+.slogan{
+    color: #fff;
+    margin: 0;
+}
+
+.rightScreen{
+   background: #f4f7f6;
+}
