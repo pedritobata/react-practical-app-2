@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import './Auth.css';
 import GhostCard from '../../components/Cards/GhostCard';
+import  '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
 const auth = props => {
 
@@ -14,6 +15,8 @@ const auth = props => {
                 <div className="rightScreen halfScreen">
                     <GhostCard>
                         <h1 className="great-title">Login Form</h1>
+                        <button className="btn btn-danger btn-lg">Cancel</button>
+                        <button className="btn btn-light btn-lg">Save</button>
                     </GhostCard>
                 </div>
             </section>
