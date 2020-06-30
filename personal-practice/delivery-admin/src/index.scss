@@ -14,3 +14,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*  Customizacion de Bootstrap  */
+
+$theme-colors: (
+  "primary": #0074d9,
+  "danger": #000
+);
+
+/*  Agregando un color custom al mapa que ya maneja bootstrap  */
+
+$theme-colors: (
+  "send-button": #f52ea8
+);
+
+
+
+@import  '../node_modules/bootstrap/scss/bootstrap.scss';
+
+
+
+
