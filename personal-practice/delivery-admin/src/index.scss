@@ -16,21 +16,30 @@ code {
 }
 
 /*  Customizacion de Bootstrap  */
+/* @use "sass:map";
 
-$theme-colors: (
-  "primary": #0074d9,
-  "danger": #000
-);
+@mixin theme-colors-custom {
+  
+  $theme-colors: map.merge($theme-colors, ("primary": #1fb6ff,"danger": #000));
+  
+}
+ */
 
-/*  Agregando un color custom al mapa que ya maneja bootstrap  */
+/* $theme-colors: (
+  "primary": #1fb6ff,
+  "danger": #000,
+); */
 
-$theme-colors: (
+/*  Agregando un color custom al mapa de colores que ya maneja bootstrap 
+NO funca en windows*/
+
+/* $theme-colors: (
   "send-button": #f52ea8
-);
+); */
 
 
 
-@import  '../node_modules/bootstrap/scss/bootstrap.scss';
+@import  url('../node_modules/bootstrap/scss/bootstrap.scss');
 
 
 
