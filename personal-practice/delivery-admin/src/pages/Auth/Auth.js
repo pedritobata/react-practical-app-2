@@ -2,13 +2,15 @@ import React, { Fragment, useState, useContext } from 'react';
 import './Auth.css';
 import GhostCard from '../../components/Cards/GhostCard';
 import { authenticate } from '../../constantes/auth-credentials';
-import {AppContext} from '../../App';
+import {AppContext} from '../../Context/context';
 
 
 
 const Auth = (props) => {
 
     const context = useContext(AppContext);
+    //console.log('context', context);
+    
 
     const [ user, setUser ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -17,7 +19,8 @@ const Auth = (props) => {
         event.preventDefault();
         if(authenticate(user, password)){
             console.log("Usuario autenticado!!");
-            context.setUserName(user);
+            context.setUsername(user);
+            props.history.push('/home');
         }else{
             console.log('Login Failed!');
         }
@@ -46,14 +49,14 @@ const Auth = (props) => {
                 </div>
                 <div className="rightScreen halfScreen">
                     <GhostCard width="65" padding="35">
-                        <h1 className="great-title">Login Form</h1>
+                        <h1 className="great-title mb-5">Login Form</h1>
                         <form onSubmit={loginHandler}>
                             <div className="form-group"><label /* htmlFor="txt-email" */ className="form-text">Email</label>
                             <input id="txt-email" type="text" value={user} onChange={onChangeInputHandler} className="form-control"/></div>
                             <div className="form-group"><label /* htmlFor="txt-email" */ className="form-text">Password</label>
                             <input id="txt-pass" type="password" value={password} onChange={onChangeInputHandler} className="form-control"/></div>
                            {/*  <button type="submit" className="btn btn-danger btn-md">Cancel</button> */}
-                            <div className="mt-4">
+                            <div className="mt-5">
                                 <button type="submit" className="btn btn-send-button btn-md btn-block">Send</button>
                             </div>
                         </form>

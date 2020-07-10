@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppContext } from '../../App';
+import { AppContext } from '../../Context/context';
 
 
 class Home extends React.Component{
@@ -8,7 +8,7 @@ class Home extends React.Component{
 
     render(){
 
-        return <h1>Welcome {this.context.username}</h1>
+        return <h1>Welcome {this.context.username}!</h1>
     }
 }
 
