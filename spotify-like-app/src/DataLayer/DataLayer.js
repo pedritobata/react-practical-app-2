@@ -6,6 +6,8 @@ const DataLayerContext = createContext();
 
 const DataLayer = ({initialState, reducer, children}) => {
 
+   // console.log('DataLayer render!!');
+
     return (
         <DataLayerContext.Provider value={useReducer(reducer,initialState)}>
             {children}

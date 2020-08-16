@@ -13,10 +13,12 @@ function App() {
   //const [ token, setToken ] = useState(null);
   const [{ user , token}, dispatch] = useDataLayerContext();
 
+  console.log('I have a token 👉', token);
+
   useEffect(() => {
     const hash = getTokenFromUrl();
-    const _token = hash.access_token;
     window.location.hash = "";
+    const _token = hash.access_token;
     //setToken(_token);
 
    
@@ -36,12 +38,22 @@ function App() {
           user: user
         });
       });
+
+      spotify.getUserPlaylists().then(playlists => {
+        //console.log('playlists',playlists);
+        dispatch({
+          type: "SET_PLAYLISTS",
+          playlists: playlists
+        });
+      });
+      
     }
 
-    //console.log('I have a token 👉', hash);
+    
   }, []);
   
-  //console.log('User logged in 👽', user);
+  
+  //console.log('User logged in 👽', token);
 
   return (
     <div className="App">

@@ -14,3 +14,15 @@
     padding: 10px;
     margin-right: auto;
 }
+
+.sidebar__title{
+    font-size: 12px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.sidebar > hr{
+    width: 90%;
+    border: 1px solid #282828;
+    margin: 10px auto;
+}
