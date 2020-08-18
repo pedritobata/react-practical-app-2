@@ -24,10 +24,9 @@ const Sidebar = () => {
             <strong className="sidebar__title">PLAYLISTS</strong>
             <hr />
 
-        
-            <SidebarOption title="Rock" />
-            <SidebarOption title="R&B" />
-            <SidebarOption title="Salsa" />
+            {playlists?.items?.map((playlist) => (
+                <SidebarOption key={playlist.name} title={playlist.name} />
+            ))}
 
         </div>
     );
