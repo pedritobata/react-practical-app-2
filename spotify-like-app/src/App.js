@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Login from './pages/Auth/Login';
 import { getTokenFromUrl } from './client/spotify';
@@ -24,7 +24,7 @@ function App() {
       localStorage.setItem('spotifyToken',hash.access_token);
     }
     
-    const savedToken = localStorage.getItem("spotifyToken");
+    const savedToken = "";// localStorage.getItem("spotifyToken");
    
 
     if(savedToken){
@@ -54,7 +54,7 @@ function App() {
     }
     //console.log('I have a HASH 👉', hash);
     
-  }, []);
+  }, [dispatch]);
   
   
   //console.log('User logged in 👽', _token);
@@ -62,7 +62,7 @@ function App() {
   return (
     <div className="App">
       {
-        token ? <Player spotify={spotify} /> : <Login />
+        true ? <Player spotify={spotify} /> : <Login />
       }
     </div>
   );

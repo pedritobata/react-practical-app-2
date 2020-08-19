@@ -8,11 +8,14 @@ import { useDataLayerContext }  from '../../DataLayer/DataLayer';
 
 const Sidebar = () => {
 
-    const [{ playlists }, dispatch] = useDataLayerContext();
+    //const [{ playlists }, dispatch] = useDataLayerContext();
+    //  Hemos excluido dispatch del destructuring porque no lo estamos usando
+    const [{ playlists }] = useDataLayerContext();
 
     return (
         <div className="sidebar">
             <img 
+            alt="logo"
             src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
             className="sidebar__logo" />
 
