@@ -24,7 +24,7 @@ function App() {
       localStorage.setItem('spotifyToken',hash.access_token);
     }
     
-    const savedToken = "";// localStorage.getItem("spotifyToken");
+    const savedToken =  localStorage.getItem("spotifyToken");
    
 
     if(savedToken){
@@ -50,6 +50,14 @@ function App() {
           playlists: playlists
         });
       });
+
+      spotify.getPlaylist('0DKI8a7qViomeGZhuvuIe7').then(response => {
+        console.log('discover_weekly', response);
+        dispatch({
+          type: 'DISCOVER_WEEKLY',
+          discover_weekly: response
+        });
+      });
       
     }
     //console.log('I have a HASH 👉', hash);
@@ -62,7 +70,7 @@ function App() {
   return (
     <div className="App">
       {
-        true ? <Player spotify={spotify} /> : <Login />
+        token ? <Player spotify={spotify} /> : <Login />
       }
     </div>
   );
