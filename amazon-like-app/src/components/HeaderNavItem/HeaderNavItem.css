@@ -1,0 +1,20 @@
+
+.header-nav__link{
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+}
+
+.header-nav__option{
+    display: flex;
+    flex-direction: column;
+}
+
+.header-nav__option__topText{
+    font-size: 11px;
+}
+
+.header-nav__option__bottomText{
+    font-size: 13px;
+    font-weight: 800;
+}
