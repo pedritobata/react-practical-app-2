@@ -9,12 +9,48 @@ const Home = () => {
            alt="banner"
            className="home__image" />
 
-           <Product 
-              title="Roland TD-50K Electronic Drum Kit"
-              image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
-              price={3000}
-              rating={5}
-           />
+           <div className="home__row">
+             <Product 
+                title="Roland TD-50K Electronic Drum Kit"
+                image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
+                price={3000}
+                rating={5}
+             />
+             <Product 
+                title="Roland TD-50K Electronic Drum Kit"
+                image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
+                price={3000}
+                rating={5}
+             />
+           </div>
+           <div className="home__row">
+             <Product 
+                title="Roland TD-50K Electronic Drum Kit"
+                image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
+                price={3000}
+                rating={5}
+             />
+             <Product 
+                title="Roland TD-50K Electronic Drum Kit"
+                image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
+                price={3000}
+                rating={5}
+             />
+              <Product 
+                title="Roland TD-50K Electronic Drum Kit"
+                image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
+                price={3000}
+                rating={5}
+             />
+           </div>
+           <div className="home__row">
+             <Product 
+                title="Roland TD-50K Electronic Drum Kit"
+                image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
+                price={3000}
+                rating={5}
+             />
+           </div>
     </div>;
 }
 

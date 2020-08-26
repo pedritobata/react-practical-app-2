@@ -3,9 +3,14 @@
     flex-direction: column;
     max-height: 400px;
     min-width: 100px;
-    margin-top: -60px;
+    margin-top: -150px;
     z-index: 1;
     background: white;
+    width: 100%;
+    padding: 20px;
+    margin-left: 10px; 
+    margin-right: 10px; 
+    margin-bottom: 165px;
  }
 
  .product__info{
