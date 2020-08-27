@@ -38,4 +38,6 @@
      background: #f0c14b;
      border-width: 1px solid;
      border-color: #a88734 #9c7e31 #846a29;
+     cursor: pointer;
+     outline: none;
  }
