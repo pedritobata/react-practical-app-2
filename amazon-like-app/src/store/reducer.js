@@ -1,5 +1,11 @@
 export const initialState = {
-    basket: []
+    basket: [{
+        id: Math.random(),
+        title: "Samsung Galaxy A20S w/Triple Cameras (32GB, 3GB RAM) 6.5\" Display, Snapdragon 450, 4000mAh Battery, US & Global 4G LTE GSM Unlocked A207M/DS - International Model (Black, 32GB + 64GB SD Bundle)",
+        image: "https://images-na.ssl-images-amazon.com/images/I/31DVClA7BaL._AC_.jpg",
+        price: 189.00,
+        rating: 5
+    },]
 }
 
 
@@ -12,8 +18,10 @@ export const reducer = (state, action) => {
                 basket: [ ...state.basket ,action.item]
             }
         case "REMOVE_FROM_BASKET":
+
             return {
-                ...state
+                ...state,
+                basket: state.basket.filter(item => item.id !== action.id)
             }
         default:
             return state;

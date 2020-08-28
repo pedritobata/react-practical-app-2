@@ -11,12 +11,14 @@ const Home = () => {
 
            <div className="home__row">
              <Product 
+                id={Math.random()}
                 title="Roland TD-50K Electronic Drum Kit"
                 image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
                 price={3000}
                 rating={5}
              />
              <Product 
+                id={Math.random()}
                 title="Roland TD-50K Electronic Drum Kit"
                 image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
                 price={3000}
@@ -25,18 +27,21 @@ const Home = () => {
            </div>
            <div className="home__row">
              <Product 
+                id={Math.random()}
                 title="Roland TD-50K Electronic Drum Kit"
                 image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
                 price={3000}
                 rating={5}
              />
-             <Product 
+             <Product
+                id={Math.random()} 
                 title="Roland TD-50K Electronic Drum Kit"
                 image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
                 price={3000}
                 rating={5}
              />
               <Product 
+                id={Math.random()}
                 title="Roland TD-50K Electronic Drum Kit"
                 image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
                 price={3000}
@@ -45,6 +50,7 @@ const Home = () => {
            </div>
            <div className="home__row">
              <Product 
+                id={Math.random()}
                 title="Roland TD-50K Electronic Drum Kit"
                 image="https://images-na.ssl-images-amazon.com/images/I/71efdmSX6tL._AC_SL1500_.jpg"
                 price={3000}
