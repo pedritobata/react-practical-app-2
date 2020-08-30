@@ -5,13 +5,21 @@ export const initialState = {
         image: "https://images-na.ssl-images-amazon.com/images/I/31DVClA7BaL._AC_.jpg",
         price: 189.00,
         rating: 5
-    },]
+    },],
+    user: null
 }
+
+export const basketTotal = basket => basket.reduce((amount, item) => amount + item.price, 0);
 
 
 export const reducer = (state, action) => {
     console.log(action);
     switch(action.type){
+        case "SET_USER":
+            return {
+                ...state,
+                user: action.user
+            }
         case "ADD_TO_BASKET":
             return {
                 ...state,
