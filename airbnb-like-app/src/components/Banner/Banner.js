@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Banner.css";
 import { Button } from "@material-ui/core";
 
 const Banner = () => {
+
+  
+
   return (
     <div className="banner">
         <div className="banner__search">
