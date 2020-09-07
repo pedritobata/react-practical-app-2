@@ -6,11 +6,13 @@
     background-color: white;
     box-shadow: -3px -3px 5px 1px rgba(0,0,0, .2);
     position: sticky;
+    top: 0;
+    left: 0;
     z-index: 10;
 }
 
 .header__logo{
-    width: 100px;
+    width: 120px;
     object-fit: contain;
     margin-left: 80px;
     cursor: pointer;
@@ -27,6 +29,11 @@
     border-radius: 999px;
     max-width: fit-content;
 }
+
+ /* .header__center:focus{
+    max-width: 30%;
+    transition: all 1s ease;
+}  */
 
 .header__center > input{
     outline: none;
