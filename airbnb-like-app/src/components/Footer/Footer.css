@@ -1,0 +1,20 @@
+
+.footer{
+    border: 1px solid lightgray;
+    padding: 20px;
+    text-align: center;
+    background-color: #f7f7f7;
+    margin-top: 20px;
+    font-weight: 400;
+   
+}
+
+.footer > p{
+    font-size: 14px;
+    
+}
+
+
+.footer > small{
+    font-size: 13px;
+}

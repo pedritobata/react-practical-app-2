@@ -12,7 +12,7 @@
 }
 
 .header__logo{
-    width: 120px;
+    width: 100px;
     object-fit: contain;
     margin-left: 80px;
     cursor: pointer;
