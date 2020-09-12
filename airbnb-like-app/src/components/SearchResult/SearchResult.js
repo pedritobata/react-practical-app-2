@@ -13,8 +13,11 @@ const SearchResult = ({
 }) => {
   return (
     <div className="searchResult">
+     
       <img src={img} alt={title} />
+     
       <FavoriteBorderOutlined className="searchResult__heart" />
+
       <div className="searchResult__info">
         <div className="searchResult__infoTop">
           <p>{location}</p>
