@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Row.css";
 import axios from "../../client/axios";
+import { TMDB_RESOURCES_URL } from '../../client/tmdb/requests';
 
-const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
 const Row = ({ title, url , largeRow}) => {
   const [movies, setMovies] = useState([]);
@@ -23,7 +23,7 @@ const Row = ({ title, url , largeRow}) => {
         {movies.map( movie => (
           <img
             key={movie.id}
-            src={`${imageBaseUrl}${largeRow ? movie.poster_path : movie.backdrop_path}`}
+            src={`${TMDB_RESOURCES_URL}${largeRow ? movie.poster_path : movie.backdrop_path}`}
             alt={movie.name}
             className={`row__poster ${largeRow && "row__posterLarge"}`}
           />

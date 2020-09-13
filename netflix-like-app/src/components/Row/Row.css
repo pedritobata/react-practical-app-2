@@ -1,5 +1,7 @@
 .row {
   overflow-x: hidden;
+  color: white;
+  margin-left: 20px;
 }
 
 .row__container {

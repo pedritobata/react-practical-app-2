@@ -1,4 +1,5 @@
 const TMDB_API_KEY = "8d8d22ef82b3cffb9f84bdb46c11d3b7";
+export const TMDB_RESOURCES_URL = "https://image.tmdb.org/t/p/original/";
 
 const requests = {
     fetchTrending: `/trending/all/week?api_key=${TMDB_API_KEY}&language=en-US`,

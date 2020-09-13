@@ -2,12 +2,14 @@ import React from 'react';
 import './App.css';
 import Row from './components/Row/Row';
 import requests from './client/tmdb/requests';
+import Banner from './components/Banner/Banner';
 
 // api key firebase :  AIzaSyB0Bx51LVf6JqEFEUhh3MrY4I0VVjS3Cok
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
+      <Banner  />
       <Row title="NETFLIX ORIGINALS" largeRow url={requests.fetchNetflixOriginals}/>
       <Row title="Trending Now" url={requests.fetchTrending}/>
       <Row title="Top Rated" url={requests.fetchTopRated}/>
