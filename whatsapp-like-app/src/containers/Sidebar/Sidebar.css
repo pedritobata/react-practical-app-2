@@ -60,3 +60,8 @@
     margin-right: 10px;
     font-size: 1.2rem;
 }
+
+.sidebar__chats{
+    background-color: white;
+    flex: 1;
+}
