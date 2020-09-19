@@ -6,6 +6,15 @@ const Pusher = require('pusher');
 const app = express();
 const port = process.env.port || 9000;
 
+const pusher = new Pusher({
+    appId: '1075748',
+    key: '874721245a770c40496a',
+    secret: 'a68720f2c7ea09d5fe32',
+    cluster: 'us2',
+    encrypted: true
+  });
+  
+
 // mongo
 const stringConnection = 'mongodb+srv://admin:75aZPmRgLAX5n0IL@cluster0.gryv1.mongodb.net/whatsapp-clone-backend?retryWrites=true&w=majority';
 mongoose.connect(stringConnection, {
@@ -26,7 +35,10 @@ db.once("open", () => {
         if(change.operationType === "insert"){
             pusher.trigger("messages", "inserted", {
                 name: messageDetails.name,
-                message: messageDetails.message
+                message: messageDetails.message,
+                timestamp: messageDetails.timestamp,
+                received: messageDetails.received,
+                _id: messageDetails._id
             });
         }else{
             console.log("Insert operation not completed.");
@@ -36,16 +48,13 @@ db.once("open", () => {
 
 
 
-const pusher = new Pusher({
-  appId: '1075748',
-  key: '874721245a770c40496a',
-  secret: 'a68720f2c7ea09d5fe32',
-  cluster: 'us2',
-  encrypted: true
-});
-
-
 app.use(express.json());
+
+app.use((req,res,next) => {
+    res.setHeader("Access-Control-Allow-origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    next();
+});
 
 
 app.get("/", (req,res) => {

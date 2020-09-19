@@ -4,7 +4,10 @@ const messagesSchema = mongoose.Schema({
     name: String,
     message: String,
     timestamp: String,
-    received: Boolean
+    received: Boolean,
+   /*  _id: {
+        required: false
+    } */
 });
 
 
