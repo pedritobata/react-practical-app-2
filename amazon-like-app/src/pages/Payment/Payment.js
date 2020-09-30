@@ -28,11 +28,14 @@ const Payment = () => {
       const response = await axios.post(
         `/payments/create?total=${basketTotal(basket) * 100}`
       );
+      
       setClientSecret(response.data.clientSecret);
     };
 
     getClientSecret();
   }, [basket]);
+
+  console.log("Secret >>>", clientSecret);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,6 +49,11 @@ const Payment = () => {
     setSucceeded(true);
     setError(null);
     setProcessing(false);
+
+    dispatch({
+      type: "EMPTY_BASKET"
+    })
+
     history.replace("/orders");
 
   };
@@ -54,6 +62,8 @@ const Payment = () => {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   };
+
+  
 
   return (
     <div className="payment">
