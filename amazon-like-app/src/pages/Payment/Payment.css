@@ -29,3 +29,26 @@
     flex: 0.8;
 }
 
+.payment__details{
+    max-width: 400px;
+}
+
+.payment__priceContainer{
+    margin: 10px 0;
+}
+
+.payment__details > form > button{
+    background: #f0c14b;
+    border-width: 1px solid;
+    border-color: #a88734 #9c7e31 #846a29;
+    cursor: pointer;
+    outline: none;
+    min-width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    color: black;
+    font-weight: 600;
+    padding: 4px 0;
+}
+

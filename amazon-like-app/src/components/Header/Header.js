@@ -27,7 +27,7 @@ const Header = () => {
                 bottomText={user ? "Sign out" : "Sign in"} 
                 to={user ? "/logout" : "/login"}
                 clicked={loginHandler}/>
-            <HeaderNavItem  topText="Returns"  bottomText="& Orders" to=""/>
+            <HeaderNavItem  topText="Returns"  bottomText="& Orders" to="/orders"/>
             <HeaderNavItem  topText="Your"  bottomText="Prime" to=""/>
             <Link className="header__optionBasket" to="/checkout">
                 <ShoppingBasket  />

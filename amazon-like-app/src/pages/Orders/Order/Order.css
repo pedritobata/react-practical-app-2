@@ -1,0 +1,22 @@
+
+.order{
+    padding: 20px;
+    background-color: white;
+    position: relative;
+    margin: 20px 0;
+}
+
+.order > h2{
+    margin-bottom: 5px;
+}
+
+.order_id{
+    position: absolute;
+    top: 40px;
+    right: 30px;
+}
+
+.order__total{
+    text-align: right;
+    font-size: 1.1rem;
+}

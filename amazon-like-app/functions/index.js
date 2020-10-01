@@ -2,7 +2,6 @@ const functions = require('firebase-functions');
 
 const express = require('express');
 const cors = require('cors');
-const { withTheme } = require('@material-ui/core');
 const stripe = require('stripe')
 ('sk_test_51HWYMCI4jQHDtBggEC9fAwUEqjRIlhi3JWmQiOZ7zpjrm0htNRjJD7Jn8YbtWDdnB1GPJAYMhkP8SkowDg1J1yL100mxGWLseL');//secret
 
