@@ -1,53 +1,90 @@
+.header {
+  background: #131921;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-.header{
-    background: #131921;
+.header__logo {
+  width: 100px;
+  margin: 18px 20px 0;
+}
+
+.header__search {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.header__searchInput {
+  height: 12px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.header__searchIcon {
+  background: #cd9042;
+  height: 22px !important;
+  padding: 5px;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header__optionBasket {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.header__optionBasketCount {
+  margin: 0 5px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.apear {
+  display: none;
+}
+
+@media screen and (max-width: 640px) {
+  .desapear {
+    display: none;
+  }
+
+  .apear {
+    display: inline-block;
+  }
+
+  .header {
+    justify-content: space-around;
+  }
+
+  .header__search {
     display: flex;
+    flex: 0.70;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
+  }
 
-.header__logo{
-    width: 100px;
-    margin: 18px 20px 0;
-}
+  .header__logo {
+    width: 90px;
+  }
 
-.header__search{
-    display: flex;
-    flex: 1;
-    align-items: center;
-}
+  .header__searchInput {
+    height: 10px;
+    padding: 8px;
+  }
 
-.header__searchInput{
-    height: 12px;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    outline: none;
-}
-
-.header__searchIcon{
-    background: #cd9042;
-    height: 22px !important;
-    padding: 5px;
-}
-
-.header__nav{
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.header__optionBasket{
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
-    margin-left: 10px;
-}
-
-.header__optionBasketCount{
-    margin: 0 5px;
-    font-size: 13px;
-    font-weight: 800;
+  .header__searchIcon {
+    height: 18px !important;
+    padding: 4px;
+  }
 }

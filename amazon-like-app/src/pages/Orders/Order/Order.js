@@ -29,7 +29,7 @@ const Order = ({order}) => {
 
             <CurrencyFormat
                   renderText={(value) => {
-                    return <h3 className="order__total">Order total:{value}</h3>;
+                    return <h3 className="order__total">Order total: <span>{value}</span></h3>;
                   }}
                   decimalScale={2}
                   value={order.data.amount / 100}

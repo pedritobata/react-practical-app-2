@@ -124,7 +124,7 @@ const Payment = () => {
               <div className="payment__priceContainer">
                 <CurrencyFormat
                   renderText={(value) => {
-                    return <h3>Order total:{value}</h3>;
+                    return <h3>Order total:<span>{value}</span></h3>;
                   }}
                   decimalScale={2}
                   value={basketTotal(basket)}
