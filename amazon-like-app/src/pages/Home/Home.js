@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
+import ButtonGeneric from "../../components/UI/ButtonGeneric";
 
 const getConfigurableProps = () => ({
     infiniteLoop:  true,
@@ -63,6 +64,9 @@ const Home = (props) => {
           description=""
           target="/products"
           linkText="Ver más" />
+          <CategoryCard title="AmazonBasics">
+            <ButtonGeneric title="Sign in securely" />
+          </CategoryCard>
          
       </div>
       <div className="home__services"></div>
