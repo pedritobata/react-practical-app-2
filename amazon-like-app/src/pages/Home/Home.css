@@ -21,10 +21,11 @@
 
 .home__categoriesCards{
     display: flex;
+    justify-content: space-around;
     flex-flow: row wrap;
     margin-left: .65rem;
     margin-right: .65rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }
 
 .home__categoriesCards--top{
