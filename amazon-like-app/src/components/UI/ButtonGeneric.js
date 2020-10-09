@@ -1,17 +1,20 @@
 import { ButtonGroup } from '@material-ui/core';
+import { CallMerge } from '@material-ui/icons';
 import React from 'react';
 import './ButtonGeneric.css';
 
 const ButtonGeneric = props => {
 
-    const getStylesClasses = () => {
+    const getClassesFromClientCustomization = () => {
         let clientClasses = "";
-        if(props.styles)  clientClasses = props.styles.join(" ");
+        const prefixesAdded = props.styles && props.styles.split(" ").map(style => "buttonGeneric--".concat(style));
+        if(props.styles)  clientClasses = prefixesAdded.join(" ");
+        console.log("clientClasses",clientClasses);
         return clientClasses;
     }
 
     return (
-        <button className={`buttonGeneric ${getStylesClasses()}`}>{props.title}</button>
+        <button className={`buttonGeneric ${getClassesFromClientCustomization()}`}>{props.title}</button>
     );
 }
 

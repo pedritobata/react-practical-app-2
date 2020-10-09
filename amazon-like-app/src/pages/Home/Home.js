@@ -64,8 +64,8 @@ const Home = (props) => {
           description=""
           target="/products"
           linkText="Ver más" />
-          <CategoryCard title="AmazonBasics">
-            <ButtonGeneric title="Sign in securely" />
+          <CategoryCard title="Sign in for the best experience">
+            <ButtonGeneric title="Sign in securely" styles="light" />
           </CategoryCard>
          
       </div>
