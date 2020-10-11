@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ButtonGeneric from "../../components/UI/ButtonGeneric";
-import CarouselHorizontal from "../../components/UI/CarouselHorizontal";
+import CarouselHorizontal from "../../components/UI/CarouselHorizontal"; 
 import { categoriesImages, servicesItemsData } from "./homeData";
 
 const getConfigurableProps = () => ({
@@ -92,20 +92,23 @@ const Home = (props) => {
             <ButtonGeneric title="Sign in securely" styles="light" />
           </CategoryCard>
         </div>
-        <CarouselHorizontal
+      
+       <CarouselHorizontal
           title="Descubre Amazon"
           linkText="Más Información"
           items={ServicesItems}
-          itemStyle={servicesItemsStyle}
-          innerWrapperStyle={servicesWrapperStyle}
+          itemStyle={itemStyle}
+          innerWrapperStyle={innerWrapperStyle}
+        
         />
         <CarouselHorizontal
           title="Descubre Amazon"
           linkText="Más Información"
           items={ServicesItems}
-          itemStyle={servicesItemsStyle}
-          innerWrapperStyle={servicesWrapperStyle}
-        />
+          itemStyle={itemStyle}
+          innerWrapperStyle={innerWrapperStyle}
+          qty={ServicesItems.length}
+        /> 
         <div className="home__sugestedProducts"></div>
       </div>
     </main>
@@ -116,16 +119,20 @@ const Home = (props) => {
 const serviceItemWidth = '200px';
 const serviceItemHeight = '200px';
 
-const servicesItemsStyle = {
+const itemStyle = {
   width: serviceItemWidth,
   height: serviceItemHeight,
   marginRight: '10px',
   outline: 'none'
 }
 
-const servicesWrapperStyle = {
+const innerWrapperStyle = {
   padding: "0 1rem",
-  width: `calc(${serviceItemWidth} * ${ServicesItems.length + 0.85})`
+  width: `calc((${serviceItemWidth} + 10px) * ${ServicesItems.length})`
 }
+
+/* const wrapperClass = {
+  width: `calc((${serviceItemWidth} + 10px) * ${ServicesItems.length}) !important`
+} */
 
 export default Home;

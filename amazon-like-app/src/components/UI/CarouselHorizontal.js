@@ -16,7 +16,10 @@ const CarouselHorizontal = (props) => {
         data={props.items}
         arrowLeft={props.arrowLeft}
         arrowRight={props.arrowRight}
+        hideSingleArrow={true}
         itemStyle={props.itemStyle}
+        scrollBy={6}
+        transition={1}
         innerWrapperStyle={props.innerWrapperStyle}
         wheel={false}
         arrowLeft={
@@ -33,6 +36,7 @@ const CarouselHorizontal = (props) => {
           </div>
         }
         dragging={false}
+        
       />
     </div>
   );

@@ -33,4 +33,31 @@ export const servicesItemsData = [
         title: "Atención al Cliente"
     },
 
+
+
+    {
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
+        title: "Atención al Cliente"
+    },
+    {
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
+        title: "Atención al Cliente"
+    },
+    {
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
+        title: "Atención al Cliente"
+    },
+    {
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
+        title: "Atención al Cliente"
+    },
+    {
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
+        title: "Atención al Cliente"
+    },
+    {
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
+        title: "Atención al Cliente"
+    },
+
 ]
