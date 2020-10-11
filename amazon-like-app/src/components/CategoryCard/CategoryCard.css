@@ -1,7 +1,7 @@
 
 .categoryCard{
     height: 400px;
-    min-width: 260px;
+    min-width: 250px;
     flex: 0.21;
     background-color: white;
     padding: 20px;
@@ -33,14 +33,3 @@
 
 }
 
-.categoryCard__link{
-    text-decoration: none;
-    color: #0066c0;
-    font-size: .88rem;
-    font-weight: 400;
-}
-
-.categoryCard__link:hover{
-    text-decoration: underline;
-    color: #c45500;
-}

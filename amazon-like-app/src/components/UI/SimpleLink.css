@@ -1,0 +1,13 @@
+
+.simpleLink {
+  text-decoration: none;
+  color: #0066c0;
+  font-size: 0.88rem;
+  font-weight: 400;
+}
+
+
+.simpleLink:hover{
+    text-decoration: underline;
+    color: #c45500;
+}

@@ -1,0 +1,60 @@
+
+.carouselHorizontal{
+    background-color: white;
+    padding: 1.1rem 0 1.6rem 0; 
+    margin-bottom: 1.3rem;
+}
+
+.carouselHorizontal__title{
+    padding-left: 1.3rem;
+    display: inline-block;
+    margin-right: 1.1rem;
+    margin-bottom: .8rem;
+    font-weight: 400;
+    color: #444;
+    font-size: 22px;
+    
+}
+
+.carouselArrow__container{
+    position: relative;
+    padding: 2rem .9rem;
+    z-index: 10;
+    border-top: 1px solid rgb(228, 228, 228);
+    cursor: pointer;
+    color: rgb(172, 172, 172);
+}
+
+.carouselArrow__container:hover{
+    color: rgb(155, 153, 153);
+}
+
+.carouselArrow__container--left{
+    box-shadow: 1px 1px 3px -1px #888;
+}
+
+.carouselArrow__container--right{
+    box-shadow: -1px 1px 3px -1px #888;
+}
+
+
+.carouselArrow{
+    font-size: 2.3rem;
+    
+    cursor: pointer;
+}
+
+/* Los siguientes estilos es propio de la libreria react-horizontal-scrolling-menu */
+.horizontal-menu{
+    padding: 0 1.3rem !important;
+}
+
+.menu-wrapper{
+    overflow-x: scroll !important;
+}
+
+.menu-wrapper--inner{
+    /* transform: translate3d(0px, 0px, 0px) !important; */
+    padding: 0 !important;
+}
+ 

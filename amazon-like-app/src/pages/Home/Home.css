@@ -19,13 +19,16 @@
     , rgba(234, 237, 237, 1) 100%);
 }
 
+.home__container{
+    margin-left: 1.2rem;
+    margin-right: 1.3rem;
+}
+
 .home__categoriesCards{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-flow: row wrap;
-    margin-left: .65rem;
-    margin-right: .65rem;
-    margin-bottom: 4rem;
+  /*   margin-bottom: 4rem; */
 }
 
 .home__categoriesCards--top{
@@ -49,4 +52,10 @@
 
 .arrow--right{
     right: 1.5rem;
+ }
+
+ .serviceItem{
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
  }

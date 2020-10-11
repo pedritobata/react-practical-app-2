@@ -1,6 +1,7 @@
 import React from "react";
 import "./CategoryCard.css";
 import { Link } from "react-router-dom";
+import SimpleLink from "../UI/SimpleLink";
 
 const CategoryCard = (props) => {
   return (
@@ -14,9 +15,9 @@ const CategoryCard = (props) => {
         />
       </Link>}
       {props.description && <p className="categoryCard__description">{props.description}</p>}
-      {props.linkText && <Link to={props.target} className="categoryCard__link">
+      {props.linkText && <SimpleLink target="/products">
         {props.linkText}
-      </Link>}
+      </SimpleLink>}
       {props.children}
     </div>
   );
