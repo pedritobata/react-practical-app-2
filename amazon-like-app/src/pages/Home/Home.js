@@ -60,7 +60,7 @@ const Home = (props) => {
         <Carousel {...getConfigurableProps()}>
           {categoriesImages.map((image) => (
             <div>
-              <img src={image} />
+              <img src={image} className="banner__slideImage"/>
             </div>
           ))}
         </Carousel>
@@ -99,7 +99,8 @@ const Home = (props) => {
           items={ServicesItems}
           itemStyle={itemStyle}
           innerWrapperStyle={innerWrapperStyle}
-        
+          scrollBy={1}
+          qty={ServicesItems.length}
         />
         <CarouselHorizontal
           title="Descubre Amazon"
@@ -107,6 +108,7 @@ const Home = (props) => {
           items={ServicesItems}
           itemStyle={itemStyle}
           innerWrapperStyle={innerWrapperStyle}
+          scrollBy={1}
           qty={ServicesItems.length}
         /> 
         <div className="home__sugestedProducts"></div>
@@ -130,9 +132,5 @@ const innerWrapperStyle = {
   padding: "0 1rem",
   width: `calc((${serviceItemWidth} + 10px) * ${ServicesItems.length})`
 }
-
-/* const wrapperClass = {
-  width: `calc((${serviceItemWidth} + 10px) * ${ServicesItems.length}) !important`
-} */
 
 export default Home;

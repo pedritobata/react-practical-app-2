@@ -1,8 +1,8 @@
 
 .categoryCard{
     height: 400px;
-    min-width: 250px;
-    flex: 0.21;
+    min-width: 300px;
+    flex: 0.24;
     background-color: white;
     padding: 20px;
     margin-bottom: 2rem;
@@ -31,5 +31,11 @@
 
 .categoryCard__description{
 
+}
+
+@media (max-width: 360px){
+    .categoryCard{
+        min-width: 250px;
+    }
 }
 
