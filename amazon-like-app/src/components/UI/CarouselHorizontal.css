@@ -45,14 +45,17 @@
 /* Los siguientes estilos es propio de la libreria react-horizontal-scrolling-menu */
 .horizontal-menu {
   padding: 0 1.3rem !important;
+  overflow-y: hidden;
 }
 
 .menu-wrapper {
+  width: 100%;
   overflow: scroll !important;
 }
 
 .menu-wrapper--inner {
   margin-bottom: 1rem !important;
+  padding: 0 !important;
 
  /*  transform: translateX(0%) !important; */
 }
@@ -86,7 +89,3 @@
     right: 3rem;
 }
 
-.menu-wrapper--inner {
-  /* transform: translate3d(0px, 0px, 0px) !important; */
-  padding: 0 !important;
-}

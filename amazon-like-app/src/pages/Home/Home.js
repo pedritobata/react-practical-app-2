@@ -99,7 +99,7 @@ const Home = (props) => {
           items={ServicesItems}
           itemStyle={itemStyle}
           innerWrapperStyle={innerWrapperStyle}
-          scrollBy={1}
+          scrollBy={2}
           qty={ServicesItems.length}
         />
         <CarouselHorizontal
@@ -108,7 +108,7 @@ const Home = (props) => {
           items={ServicesItems}
           itemStyle={itemStyle}
           innerWrapperStyle={innerWrapperStyle}
-          scrollBy={1}
+          scrollBy={2}
           qty={ServicesItems.length}
         /> 
         <div className="home__sugestedProducts"></div>

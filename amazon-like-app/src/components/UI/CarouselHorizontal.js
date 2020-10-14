@@ -42,6 +42,7 @@ const CarouselHorizontal = (props) => {
         itemStyle={props.itemStyle}
         scrollBy={props.scrollBy}
         transition={1}
+        onUpdate={() => {}}
         innerWrapperStyle={props.innerWrapperStyle}
         wheel={false}
         arrowLeft={
