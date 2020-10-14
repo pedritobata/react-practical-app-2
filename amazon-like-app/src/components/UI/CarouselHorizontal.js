@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import SimpleLink from "./SimpleLink";
-import Style from 'style-it';
+//import Style from 'style-it';
 
 const CarouselHorizontal = (props) => {
 

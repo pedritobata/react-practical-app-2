@@ -20,12 +20,11 @@
   z-index: 10;
   border-top: 1px solid rgb(228, 228, 228);
   cursor: pointer;
-  color: rgb(116, 116, 116);
+  color: rgb(172, 172, 172);
 }
 
 .carouselArrow__container:hover {
-  /* color: rgb(155, 153, 153); */
-  color: rgb(83, 83, 83);
+  color: rgb(155, 153, 153);
 }
 
 .carouselArrow__container--left {
@@ -50,8 +49,6 @@
 
 .menu-wrapper {
   overflow: scroll !important;
-  width: 100% !important;
- 
 }
 
 .menu-wrapper--inner {
@@ -67,14 +64,17 @@
 
 .menu-wrapper::-webkit-scrollbar:horizontal {
   height: 6px !important;
- 
 }
 
 .menu-wrapper::-webkit-scrollbar-thumb {
+  background-color: #a2a2a2;
   border-radius: 20px !important;
-  
 }
 
+.menu-wrapper::-webkit-scrollbar-thumb {
+  background-color: #a2a2a2;
+  border-radius: 20px !important;
+}
 
 .scroll-menu-arrow {
     position: absolute;
@@ -89,34 +89,4 @@
 .menu-wrapper--inner {
   /* transform: translate3d(0px, 0px, 0px) !important; */
   padding: 0 !important;
-}
-
-.scroll-menu-arrow--disabled{
-  opacity: 0.4;
-}
-
-@media (max-width: 360px){
-  .scroll-menu-arrow {
-    background-color: transparent;
-}
-
-.carouselArrow__container {
-  border: none;
-}
-
-.carouselArrow__container--left {
-  box-shadow: 0 0 0 0 #fff;
-
-}
-
-.carouselArrow__container--right {
-  box-shadow: 0 0 0 0 #fff;
-}
-
-.carouselHorizontal__title {
- 
-  font-size: 18px;
-}
-
-
 }
