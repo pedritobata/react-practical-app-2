@@ -45,7 +45,7 @@ const getConfigurableProps = () => ({
 const ServicesItems = servicesItemsData.map((item) => {
   return (
     <img
-      key={item.title}
+      key={item.title + Math.random()}
       src={item.image}
       className="serviceItem"
       alt={item.title}

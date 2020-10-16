@@ -1,3 +1,7 @@
+.carouselHorizontal__variables{
+  --padding-value-x : 1.3rem;
+}
+
 .carouselHorizontal {
   background-color: white;
   padding: 1.1rem 0 0.6rem 0;
@@ -44,7 +48,7 @@
 
 /* Los siguientes estilos es propio de la libreria react-horizontal-scrolling-menu */
 .horizontal-menu {
-  padding: 0 1.3rem !important;
+ /*  padding: 0 1.3rem !important; */
   overflow-y: hidden;
 }
 
@@ -62,22 +66,23 @@
 
 .menu-wrapper::-webkit-scrollbar {
   appearance: none !important;
- 
+  display: none;
 }
 
-.menu-wrapper::-webkit-scrollbar:horizontal {
+/* .menu-wrapper::-webkit-scrollbar:horizontal {
   height: 6px !important;
 }
 
 .menu-wrapper::-webkit-scrollbar-thumb {
   background-color: #a2a2a2;
   border-radius: 20px !important;
-}
+} 
 
 .menu-wrapper::-webkit-scrollbar-thumb {
   background-color: #a2a2a2;
   border-radius: 20px !important;
 }
+*/
 
 .scroll-menu-arrow {
     position: absolute;
@@ -86,6 +91,26 @@
 }
 
 .scroll-menu-arrow:last-of-type {
-    right: 3rem;
+    right: calc(var(--padding-value-x) * 2);
 }
 
+.scrollMenu__container{
+  padding: 0 var(--padding-value-x);
+}
+
+.scrollMenu__scrollBar{
+  background-color: #a2a2a2;
+  border-radius: 20px;
+  height: 6px;
+}
+
+@media (max-width: 400px){
+  .carouselArrow__container {
+ 
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+}

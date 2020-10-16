@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./CarouselHorizontal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
@@ -9,32 +9,57 @@ import SimpleLink from "./SimpleLink";
 const CarouselHorizontal = (props) => {
 
     const[showScrollbar, setShowScrollbar] = useState(false);
-    // asignamos una id dinamica que obviamente sea unica (al final la usaremos como una clase css)
-    // para eso usamos un numero random , nos deshacemos del punto para que el html no lo confunda con una
-    //clase css
-    //y lo convertimos a string
-    const[id, setId] = useState('id' + Math.floor((Math.random() * 10000)));
+    const[nroPages, setNroPages] = useState(0);
+    const scrollMenuRef = useRef({});
 
+   
+
+    useEffect(() => {
+      console.log("scrollMenuRef", scrollMenuRef);
+      console.log("scrollMenuRef total width", scrollMenuRef.current.menuInner.menuInner.elem.scrollWidth);
+      console.log("scrollMenuRef firstPageOffset", scrollMenuRef.current.firstPageOffset);
+      console.log("scrollMenuRef total items width", scrollMenuRef.current.allItemsWidth);
+      console.log("cantidad de items", props.items.length);
+      const carouselItemWidth = scrollMenuRef.current.menuInner.menuInner.elem.firstChild.clientWidth;
+      console.log("width de cada item",carouselItemWidth);
+
+      window.addEventListener("load", (e) =>{
+        const itemsShowedCurrently = Math.floor(scrollMenuRef.current.menuWrapper.clientWidth / carouselItemWidth);
+        setNroPages(Math.ceil((props.items.length - itemsShowedCurrently) / props.scrollBy));
+      });
+
+      window.addEventListener("resize", (e) =>{
+        const itemsShowedCurrently = Math.floor(scrollMenuRef.current.menuWrapper.clientWidth / carouselItemWidth);
+        setNroPages(Math.ceil((props.items.length - itemsShowedCurrently) / props.scrollBy));
+      });
+
+      
+
+    });
+
+
+   
 
   return (
-    <div className="carouselHorizontal">
-      <style>
+    <div className="carouselHorizontal carouselHorizontal__variables">
+      {/* <style>
         {
           `
-          .${id} .menu-wrapper::-webkit-scrollbar-thumb {
+          .scrollMenu__container .menu-wrapper::-webkit-scrollbar-thumb {
             background-color: ${showScrollbar ? '#a2a2a2' : "transparent"} !important;
           }
           `
         }
-      </style>
+      </style> */}
       <h2 className="carouselHorizontal__title">{props.title}</h2>
       <SimpleLink className="carouselHorizontal__linkText">
         {props.linkText}
       </SimpleLink>
       
-      <div className={id} onMouseOver={() => setShowScrollbar(true)}
+      <div className="scrollMenu__container" onMouseOver={() => setShowScrollbar(true)}
       onMouseLeave={() => setShowScrollbar(false)}>
         <ScrollMenu
+        ref={scrollMenuRef}
         data={props.items}
         arrowLeft={props.arrowLeft}
         arrowRight={props.arrowRight}
@@ -42,7 +67,7 @@ const CarouselHorizontal = (props) => {
         itemStyle={props.itemStyle}
         scrollBy={props.scrollBy}
         transition={1}
-        onUpdate={() => {}}
+        onUpdate={(translated) => {console.log("trans", translated)}}
         innerWrapperStyle={props.innerWrapperStyle}
         wheel={false}
         arrowLeft={
@@ -61,6 +86,9 @@ const CarouselHorizontal = (props) => {
         dragging={true}
         
       />
+      <div className="scrollMenu__scrollBar" style={{
+        width:`calc(100% / ${nroPages})`
+      }}></div>
       </div>
      
       
