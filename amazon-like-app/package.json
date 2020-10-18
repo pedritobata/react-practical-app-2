@@ -23,6 +23,7 @@
     "react": "^16.13.1",
     "react-currency-format": "^1.0.0",
     "react-dom": "^16.13.1",
+    "react-fast-carousel": "git+https://github.com/moarwick/react-fast-carousel.git",
     "react-horizontal-scrolling-menu": "^0.7.8",
     "react-responsive-carousel": "^3.2.10",
     "react-router-dom": "^5.2.0",

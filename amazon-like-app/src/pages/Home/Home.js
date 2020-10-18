@@ -1,4 +1,4 @@
-import React from "react";
+import React,  {useState, useEffect, useRef} from "react";
 import "./Home.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -8,6 +8,7 @@ import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ButtonGeneric from "../../components/UI/ButtonGeneric";
 import CarouselHorizontal from "../../components/UI/CarouselHorizontal"; 
 import { categoriesImages, servicesItemsData } from "./homeData";
+import CarouselFast from '../../components/UI/CarouselFast';
 
 const getConfigurableProps = () => ({
   infiniteLoop: true,
@@ -53,7 +54,33 @@ const ServicesItems = servicesItemsData.map((item) => {
   );
 });
 
+
 const Home = (props) => {
+
+  const [slideWidth, setSlideWidth] = useState(200);
+  const [slideHeight, setSlideHeight] = useState(200);
+  const [carouselWidth, setCarouselWidth] = useState();
+
+  useEffect(() => {
+    window.addEventListener("load", event => {
+      const carousel = document.querySelector(".carouselFast")
+      setCarouselWidth(carousel.children[0].firstChild.clientWidth);
+      //console.log("carouselWidth",carousel.children[0].firstChild.clientWidth);
+    })
+   
+  },[]);
+
+  useEffect(() => {
+    window.addEventListener("resize", event => {
+      const carousel = document.querySelector(".carouselFast")
+      setCarouselWidth(carousel.children[0].firstChild.clientWidth);
+      //console.log("carouselWidth",carousel.children[0].firstChild.clientWidth);
+    })
+   
+  },[]);
+
+
+
   return (
     <main className="home">
       <div className="home__banner">
@@ -93,7 +120,7 @@ const Home = (props) => {
           </CategoryCard>
         </div>
       
-       <CarouselHorizontal
+       {/* <CarouselHorizontal
           title="Descubre Amazon"
           linkText="Más Información"
           items={ServicesItems}
@@ -110,12 +137,25 @@ const Home = (props) => {
           innerWrapperStyle={innerWrapperStyle}
           scrollBy={2}
           qty={ServicesItems.length}
-        /> 
+        />  */}
+
+        <CarouselFast 
+          slides={ServicesItems}
+          slidesShown={Math.floor(carouselWidth / slideWidth)}
+        />
+
+        <CarouselFast 
+          slides={ServicesItems}
+          slidesShown={Math.floor(carouselWidth / slideWidth)}
+        />
+
         <div className="home__sugestedProducts"></div>
       </div>
     </main>
   );
 };
+
+
 
 //styles customizados para el componente Carousel según docs
 const serviceItemWidth = '200px';
