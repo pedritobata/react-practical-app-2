@@ -54,35 +54,29 @@
 
 .menu-wrapper {
   width: 100%;
-  overflow: scroll !important;
+  overflow-x: scroll !important;
 }
 
 .menu-wrapper--inner {
   margin-bottom: 1rem !important;
   padding: 0 !important;
-
+  /* overflow: scroll !important; */
  /*  transform: translateX(0%) !important; */
 }
 
-.menu-wrapper::-webkit-scrollbar {
+.menu-wrapper--inner::-webkit-scrollbar {
   appearance: none !important;
   display: none;
 }
 
-/* .menu-wrapper::-webkit-scrollbar:horizontal {
+.menu-wrapper--inner::-webkit-scrollbar:horizontal {
   height: 6px !important;
 }
 
-.menu-wrapper::-webkit-scrollbar-thumb {
-  background-color: #a2a2a2;
-  border-radius: 20px !important;
-} 
-
-.menu-wrapper::-webkit-scrollbar-thumb {
+.menu-wrapper--inner::-webkit-scrollbar-thumb {
   background-color: #a2a2a2;
   border-radius: 20px !important;
 }
-*/
 
 .scroll-menu-arrow {
     position: absolute;

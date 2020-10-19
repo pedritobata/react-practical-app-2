@@ -1,4 +1,4 @@
-import React,  {useState, useEffect, useRef} from "react";
+import React,  {useState, useEffect} from "react";
 import "./Home.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -8,7 +8,7 @@ import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ButtonGeneric from "../../components/UI/ButtonGeneric";
 import CarouselHorizontal from "../../components/UI/CarouselHorizontal"; 
 import { categoriesImages, servicesItemsData } from "./homeData";
-import CarouselFast from '../../components/UI/CarouselFast';
+import ScrollbarCarousel from '../../components/UI/FastCarouselCustomized/FastCarouselCustomized';
 
 const getConfigurableProps = () => ({
   infiniteLoop: true,
@@ -138,7 +138,7 @@ const Home = (props) => {
           scrollBy={2}
           qty={ServicesItems.length}
         />  */}
-
+{/* 
         <CarouselFast 
           slides={ServicesItems}
           slidesShown={Math.floor(carouselWidth / slideWidth)}
@@ -147,7 +147,29 @@ const Home = (props) => {
         <CarouselFast 
           slides={ServicesItems}
           slidesShown={Math.floor(carouselWidth / slideWidth)}
-        />
+        />  */}
+
+        <div className="carouselFast">
+          <ScrollbarCarousel 
+            slides={ServicesItems}
+            slidesShown={Math.floor(carouselWidth / slideWidth)}
+            style={{
+              backgroundColor: 'white',
+              paddingBottom: '10px'
+          }}
+          />
+        </div>
+
+        <div className="carouselFast">
+        <ScrollbarCarousel 
+          slides={ServicesItems}
+          slidesShown={Math.floor(carouselWidth / slideWidth)}
+          style={{
+            backgroundColor: 'white',
+            paddingBottom: '10px'
+        }}
+        /> 
+        </div>
 
         <div className="home__sugestedProducts"></div>
       </div>
@@ -157,20 +179,20 @@ const Home = (props) => {
 
 
 
-//styles customizados para el componente Carousel según docs
-const serviceItemWidth = '200px';
-const serviceItemHeight = '200px';
+//styles customizados para el componente Horizontal Carousel según docs
+// const serviceItemWidth = '200px';
+// const serviceItemHeight = '200px';
 
-const itemStyle = {
-  width: serviceItemWidth,
-  height: serviceItemHeight,
-  marginRight: '10px',
-  outline: 'none'
-}
+// const itemStyle = {
+//   width: serviceItemWidth,
+//   height: serviceItemHeight,
+//   marginRight: '10px',
+//   outline: 'none'
+// }
 
-const innerWrapperStyle = {
-  padding: "0 1rem",
-  width: `calc((${serviceItemWidth} + 10px) * ${ServicesItems.length})`
-}
+// const innerWrapperStyle = {
+//   padding: "0 1rem",
+//   width: `calc((${serviceItemWidth} + 10px) * ${ServicesItems.length})`
+// }
 
 export default Home;

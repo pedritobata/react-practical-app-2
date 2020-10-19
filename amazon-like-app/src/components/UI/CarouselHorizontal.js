@@ -45,8 +45,8 @@ const CarouselHorizontal = (props) => {
       {/* <style>
         {
           `
-          .scrollMenu__container .menu-wrapper::-webkit-scrollbar-thumb {
-            background-color: ${showScrollbar ? '#a2a2a2' : "transparent"} !important;
+          .scrollMenu__container .menu-wrapper--inner::-webkit-scrollbar-thumb {
+            background-color: ${true ? '#a2a2a2' : "transparent"} !important;
           }
           `
         }
@@ -86,9 +86,9 @@ const CarouselHorizontal = (props) => {
         dragging={true}
         
       />
-      <div className="scrollMenu__scrollBar" style={{
+      {/* <div className="scrollMenu__scrollBar" style={{
         width:`calc(100% / ${nroPages})`
-      }}></div>
+      }}></div>  */}
       </div>
      
       
