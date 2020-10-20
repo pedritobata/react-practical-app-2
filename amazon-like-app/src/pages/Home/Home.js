@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ButtonGeneric from "../../components/UI/ButtonGeneric";
-import CarouselHorizontal from "../../components/UI/CarouselHorizontal"; 
 import { categoriesImages, servicesItemsData } from "./homeData";
 import ScrollbarCarousel from '../../components/UI/FastCarouselCustomized/FastCarouselCustomized';
+import SimpleLink from "../../components/UI/SimpleLink";
 
 const getConfigurableProps = () => ({
   infiniteLoop: true,
@@ -148,14 +148,20 @@ const Home = (props) => {
           slides={ServicesItems}
           slidesShown={Math.floor(carouselWidth / slideWidth)}
         />  */}
-
+        <div className="carouselFast__titleContainer">
+          <h2 className="carouselFast__title">Discover Amazon</h2>
+            <SimpleLink target="#">Click para conocer más</SimpleLink>
+        </div>
         <div className="carouselFast">
           <ScrollbarCarousel 
             slides={ServicesItems}
             slidesShown={Math.floor(carouselWidth / slideWidth)}
+            navSize="1"
+            externalPadding="1rem"
             style={{
               backgroundColor: 'white',
-              paddingBottom: '10px'
+              padding: '0 1rem 10px'
+              
           }}
           />
         </div>

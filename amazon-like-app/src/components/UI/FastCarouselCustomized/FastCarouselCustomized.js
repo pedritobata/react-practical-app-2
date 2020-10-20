@@ -1,8 +1,15 @@
+// Este codigo fue bajado del repo de reac-fast-carousel by moarwick
+//Luego yo lo he modificado para customizarlo
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import IconChevronRight from './IconChevronRight'
 import IconChevronLeft from './IconChevronLeft'
 import { getNextTween, throttleEvent } from './utils'
+
+//agregados por mi
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Easing funs
 const easeInOutQuad = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t)
@@ -11,19 +18,45 @@ const easeOutQuad = t => t * (2 - t)
 /**
  * NavPane
  */
-const NavPane = ({ color, iconColor, left, onClick, size }) => {
-  const leftPct = left ? 0 : 100 - size
+const NavPane = ({ color, iconColor, left, onClick, size, externalPadding }) => {
+  /* const leftPct = left ? 0 : 100 - size */
+  const leftPct = left ? externalPadding : `calc(100% - 3.5% - ${externalPadding})`
   const navStyles = {
     ...styles.navPane,
-    backgroundColor: color,
-    left: `${leftPct}%`,
-    width: `${size}%`
+    backgroundColor: "white",
+    height: "6.3rem",
+    top: "25%",
+    left: `${leftPct}`,
+    width: `3.5%`,
+    boxShadow: "0 1px 3px #888",
   }
 
+
+  const arrowStyle = {
+    fontSize: "2.3rem",
+    color: "#555",
+    
+  }
+
+  const arrowStyleLeft = {
+    "clip":"rect(-10px,60px,120px,0)",
+    borderRadius: "0 3px 3px 0",
+  }
+
+  const arrowStyleRight = {
+    "clip":"rect(-10px, 90px,120px, -10px)",
+    borderRadius: "3px 0 0 3px",
+  }
+
+  const arrowStyleFinal = left ? arrowStyleLeft : arrowStyleRight;
+
   return (
-    <a href="" onClick={onClick} style={navStyles}>
-      {left && <IconChevronLeft color={iconColor} style={styles.chevronIcon} />}
-      {!left && <IconChevronRight color={iconColor} style={styles.chevronIcon} />}
+    <a href="" onClick={onClick} style={{...navStyles, ...arrowStyleFinal}}>
+     {/*  {left && <IconChevronLeft color={iconColor} style={styles.chevronIcon} />}
+      {!left && <IconChevronRight color={iconColor} style={styles.chevronIcon} />} */}
+
+      {left && <FontAwesomeIcon icon={faAngleLeft} style={{...arrowStyle}}/>}
+      {!left &&  <FontAwesomeIcon icon={faAngleRight} style={{...arrowStyle}}/>}
     </a>
   )
 }
@@ -96,9 +129,9 @@ export default class ScrollbarCarousel extends PureComponent {
     const { slideNum } = this.state
     const { navColor, navIconColor, navInset, navSize, slides, slidesShown } = this.props
 
-    const contentStyles = navInset
+   /*  const contentStyles = navInset
       ? styles.content
-      : { ...styles.content, width: `${100 - navSize * 2}%`, marginLeft: `${navSize}%` }
+      : { ...styles.content, width: `${100 - navSize * 2}%`, marginLeft: `${navSize}%` } */
 
     const renderedSlides = this.renderSlides()
 
@@ -108,11 +141,14 @@ export default class ScrollbarCarousel extends PureComponent {
 
     return (
       <div style={{ ...styles.container, ...this.props.style }}>
-        <div ref={el => (this.el = el)} style={contentStyles}>
+        <div ref={el => (this.el = el)} style={styles.content}>
           {renderedSlides}
         </div>
-        {isLeftNav && <NavPane {...navProps} left onClick={this.handleNavClick(-1)} />}
-        {isRightNav && <NavPane {...navProps} onClick={this.handleNavClick(1)} />}
+    {/*     {isLeftNav && <NavPane {...navProps} left onClick={this.handleNavClick(-1)} />}
+        {isRightNav && <NavPane {...navProps} onClick={this.handleNavClick(1)} />} */}
+
+        {<NavPane externalPadding={this.props.externalPadding} left onClick={this.handleNavClick(-1)} />}
+        {<NavPane externalPadding={this.props.externalPadding} onClick={this.handleNavClick(1)} />}
       </div>
     )
   }

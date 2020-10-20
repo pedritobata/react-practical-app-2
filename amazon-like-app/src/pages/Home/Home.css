@@ -62,10 +62,27 @@
      object-fit: contain;
  }
 
+ .carouselFast__titleContainer{
+     background-color: white;
+     padding-top: 1rem;
+     padding-left: 1rem;
+ }
+
+ .carouselFast__title{
+     display: inline-block;
+     margin-right: 1.3rem;
+     margin-bottom: .7rem;
+     color: #444;
+     font-weight: 400;
+     font-size: 21px;
+ }
 
  .carouselFast{
      margin-bottom: 1.3rem;
+  
  }
+
+
 
  @media (max-width: 730px){
     .home__categoriesCards{
