@@ -1,7 +1,7 @@
 // Este codigo fue bajado del repo de reac-fast-carousel by moarwick
 //Luego yo lo he modificado para customizarlo
 
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useState } from 'react'
 import PropTypes from 'prop-types'
 import IconChevronRight from './IconChevronRight'
 import IconChevronLeft from './IconChevronLeft'
@@ -18,45 +18,50 @@ const easeOutQuad = t => t * (2 - t)
 /**
  * NavPane
  */
-const NavPane = ({ color, iconColor, left, onClick, size, externalPadding }) => {
+const NavPane = ({ color, iconColor, left, onClick, size, externalPadding, myStyles, isLeftNav, isRightNav }) => {
   /* const leftPct = left ? 0 : 100 - size */
-  const leftPct = left ? externalPadding : `calc(100% - 3.5% - ${externalPadding})`
+  const leftPct = left ? externalPadding : `calc(100% - 40px - ${externalPadding})`
   const navStyles = {
     ...styles.navPane,
+    ...myStyles,
     backgroundColor: "white",
     height: "6.3rem",
     top: "25%",
     left: `${leftPct}`,
-    width: `3.5%`,
+    width: `40px`,
     boxShadow: "0 1px 3px #888",
   }
 
+  const arrowNormalColor = "#696969";
+  const arrowHoverColor = "#3D3D3D";
 
-  const arrowStyle = {
-    fontSize: "2.3rem",
-    color: "#555",
-    
-  }
+  const [arrowColor, setArrowColor] = useState(arrowNormalColor);
 
-  const arrowStyleLeft = {
+  const arrowContainerLeft = {
     "clip":"rect(-10px,60px,120px,0)",
     borderRadius: "0 3px 3px 0",
+    opacity: `${isLeftNav ? '1' : '0.35'}`
   }
 
-  const arrowStyleRight = {
-    "clip":"rect(-10px, 90px,120px, -10px)",
+  const arrowContainerRight = {
+    "clip":"rect(-10px, 40px,120px, -10px)",
     borderRadius: "3px 0 0 3px",
+    opacity: `${isRightNav ? '1' : '0.35'}`
   }
 
-  const arrowStyleFinal = left ? arrowStyleLeft : arrowStyleRight;
+  const arrowContainerFinal = left ? arrowContainerLeft : arrowContainerRight;
 
   return (
-    <a href="" onClick={onClick} style={{...navStyles, ...arrowStyleFinal}}>
+    <a href="" onClick={onClick} style={{...navStyles, ...arrowContainerFinal}}
+     onMouseOver={() => setArrowColor(arrowHoverColor)}
+     onMouseLeave={() => setArrowColor(arrowNormalColor)}>
      {/*  {left && <IconChevronLeft color={iconColor} style={styles.chevronIcon} />}
       {!left && <IconChevronRight color={iconColor} style={styles.chevronIcon} />} */}
 
-      {left && <FontAwesomeIcon icon={faAngleLeft} style={{...arrowStyle}}/>}
-      {!left &&  <FontAwesomeIcon icon={faAngleRight} style={{...arrowStyle}}/>}
+      {left && <FontAwesomeIcon icon={faAngleLeft} style={{fontSize: "2.3rem",
+    color: arrowColor,}}/>}
+      {!left &&  <FontAwesomeIcon icon={faAngleRight} style={{fontSize: "2.3rem",
+    color: arrowColor,}}/>}
     </a>
   )
 }
@@ -147,8 +152,16 @@ export default class ScrollbarCarousel extends PureComponent {
     {/*     {isLeftNav && <NavPane {...navProps} left onClick={this.handleNavClick(-1)} />}
         {isRightNav && <NavPane {...navProps} onClick={this.handleNavClick(1)} />} */}
 
-        {<NavPane externalPadding={this.props.externalPadding} left onClick={this.handleNavClick(-1)} />}
-        {<NavPane externalPadding={this.props.externalPadding} onClick={this.handleNavClick(1)} />}
+        {<NavPane externalPadding={this.props.externalPadding}
+         
+          isLeftNav={isLeftNav}
+         
+         left 
+         onClick={this.handleNavClick(-1)} />}
+        {<NavPane externalPadding={this.props.externalPadding} 
+        
+         isRightNav={isRightNav}
+        onClick={this.handleNavClick(1)} />}
       </div>
     )
   }
@@ -158,7 +171,7 @@ export default class ScrollbarCarousel extends PureComponent {
     const slideWidth = 100 / slidesShown + '%'
 
     return slides.map((slide, index) => (
-      <span key={index} style={{ ...styles.slideWrapper, width: slideWidth }}>
+      <span key={index} style={{ ...styles.slideWrapper, width: slideWidth , textAlign: "center"}}>
         {slide}
       </span>
     ))
