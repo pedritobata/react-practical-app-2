@@ -7,6 +7,8 @@ import IconChevronRight from './IconChevronRight'
 import IconChevronLeft from './IconChevronLeft'
 import { getNextTween, throttleEvent } from './utils'
 
+import "./FastCarouselCustomized.css";
+
 //agregados por mi
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -146,7 +148,26 @@ export default class ScrollbarCarousel extends PureComponent {
 
     return (
       <div style={{ ...styles.container, ...this.props.style }}>
-        <div ref={el => (this.el = el)} style={styles.content}>
+       {/*  <style>
+        {
+          `
+          .scrollContainer::-webkit-scrollbar-thumb {
+            background-color: ${true ? 'red' : "transparent"} !important;
+          }
+          
+            .scrollContainer::-webkit-scrollbar {
+              appearance: none ;
+              
+            }
+
+            .scrollContainer::-webkit-scrollbar:horizontal {
+              height: 6px !important;
+            }
+
+          `
+        }
+      </style> */}
+        <div data-simplebar ref={el => (this.el = el)} style={styles.content} className="scrollContainer">
           {renderedSlides}
         </div>
     {/*     {isLeftNav && <NavPane {...navProps} left onClick={this.handleNavClick(-1)} />}

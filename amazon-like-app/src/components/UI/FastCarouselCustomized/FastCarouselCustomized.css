@@ -1,0 +1,18 @@
+.scrollContainer::-webkit-scrollbar {
+/*  appearance: unset ; */
+  background:  'red' !important;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background-color:  '#000000';
+   
+}
+
+.scrollContainer::-webkit-scrollbar-button {
+  display: none;
+}
+
+  .scrollContainer::-webkit-scrollbar:horizontal {
+    height: 6px !important;
+    
+  }
