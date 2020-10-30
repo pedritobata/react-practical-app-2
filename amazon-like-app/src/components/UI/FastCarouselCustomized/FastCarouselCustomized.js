@@ -20,7 +20,8 @@ const easeOutQuad = t => t * (2 - t)
 /**
  * NavPane
  */
-const NavPane = ({ color, iconColor, left, onClick, size, externalPadding, myStyles, isLeftNav, isRightNav }) => {
+const NavPane = ({ color, iconColor, left, onClick, size, 
+  externalPadding, myStyles, isLeftNav, isRightNav,  }) => {
   /* const leftPct = left ? 0 : 100 - size */
   const leftPct = left ? externalPadding : `calc(100% - 40px - ${externalPadding})`
   const navStyles = {
@@ -32,6 +33,7 @@ const NavPane = ({ color, iconColor, left, onClick, size, externalPadding, mySty
     left: `${leftPct}`,
     width: `40px`,
     boxShadow: "0 1px 3px #888",
+    transition: "all .3s ease-in-out"
   }
 
   const arrowNormalColor = "#696969";
@@ -53,8 +55,9 @@ const NavPane = ({ color, iconColor, left, onClick, size, externalPadding, mySty
 
   const arrowContainerFinal = left ? arrowContainerLeft : arrowContainerRight;
 
+
   return (
-    <a href="" onClick={onClick} style={{...navStyles, ...arrowContainerFinal}}
+    <a href="" onClick={onClick} style={{ ...navStyles,...arrowContainerFinal}}
      onMouseOver={() => setArrowColor(arrowHoverColor)}
      onMouseLeave={() => setArrowColor(arrowNormalColor)}>
      {/*  {left && <IconChevronLeft color={iconColor} style={styles.chevronIcon} />}
@@ -98,7 +101,8 @@ export default class ScrollbarCarousel extends PureComponent {
     super(props)
 
     this.state = {
-      slideNum: 0
+      slideNum: 0,
+      showArrow: false
     }
 
     this.el = null
@@ -147,7 +151,9 @@ export default class ScrollbarCarousel extends PureComponent {
     const isRightNav = slideNum < slides.length - slidesShown
 
     return (
-      <div style={{ ...styles.container, ...this.props.style }}>
+      <div onMouseOver={() => this.setState({showArrow: true})} 
+       onMouseLeave={() => this.setState({showArrow: false})} 
+      style={{ ...styles.container, ...this.props.style }}>
        {/*  <style>
         {
           `
@@ -173,13 +179,13 @@ export default class ScrollbarCarousel extends PureComponent {
     {/*     {isLeftNav && <NavPane {...navProps} left onClick={this.handleNavClick(-1)} />}
         {isRightNav && <NavPane {...navProps} onClick={this.handleNavClick(1)} />} */}
 
-        {<NavPane externalPadding={this.props.externalPadding}
+        {<NavPane myStyles={{visibility: `${this.state.showArrow ? 'visible' : 'hidden'}`}} externalPadding={this.props.externalPadding}
          
           isLeftNav={isLeftNav}
          
          left 
          onClick={this.handleNavClick(-1)} />}
-        {<NavPane externalPadding={this.props.externalPadding} 
+        {<NavPane myStyles={{visibility: `${this.state.showArrow ? 'visible' : 'hidden'}`}} externalPadding={this.props.externalPadding} 
         
          isRightNav={isRightNav}
         onClick={this.handleNavClick(1)} />}

@@ -1,4 +1,4 @@
-import React,  {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./Home.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -7,7 +7,7 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ButtonGeneric from "../../components/UI/ButtonGeneric";
 import { categoriesImages, servicesItemsData } from "./homeData";
-import ScrollbarCarousel from '../../components/UI/FastCarouselCustomized/FastCarouselCustomized';
+import ScrollbarCarousel from "../../components/UI/FastCarouselCustomized/FastCarouselCustomized";
 import SimpleLink from "../../components/UI/SimpleLink";
 
 const getConfigurableProps = () => ({
@@ -54,32 +54,26 @@ const ServicesItems = servicesItemsData.map((item) => {
   );
 });
 
-
 const Home = (props) => {
-
   const [slideWidth, setSlideWidth] = useState(200);
   const [slideHeight, setSlideHeight] = useState(200);
   const [carouselWidth, setCarouselWidth] = useState();
 
   useEffect(() => {
-    window.addEventListener("load", event => {
-      const carousel = document.querySelector(".carouselFast")
+    window.addEventListener("load", (event) => {
+      const carousel = document.querySelector(".carouselFast");
       setCarouselWidth(carousel.children[0].firstChild.clientWidth);
       //console.log("carouselWidth",carousel.children[0].firstChild.clientWidth);
-    })
-   
-  },[]);
+    });
+  }, []);
 
   useEffect(() => {
-    window.addEventListener("resize", event => {
-      const carousel = document.querySelector(".carouselFast")
+    window.addEventListener("resize", (event) => {
+      const carousel = document.querySelector(".carouselFast");
       setCarouselWidth(carousel.children[0].firstChild.clientWidth);
       //console.log("carouselWidth",carousel.children[0].firstChild.clientWidth);
-    })
-   
-  },[]);
-
-
+    });
+  }, []);
 
   return (
     <main className="home">
@@ -87,7 +81,7 @@ const Home = (props) => {
         <Carousel {...getConfigurableProps()}>
           {categoriesImages.map((image) => (
             <div>
-              <img src={image} className="banner__slideImage"/>
+              <img src={image} className="banner__slideImage" />
             </div>
           ))}
         </Carousel>
@@ -119,8 +113,8 @@ const Home = (props) => {
             <ButtonGeneric title="Sign in securely" styles="light" />
           </CategoryCard>
         </div>
-      
-       {/* <CarouselHorizontal
+
+        {/* <CarouselHorizontal
           title="Descubre Amazon"
           linkText="Más Información"
           items={ServicesItems}
@@ -138,7 +132,7 @@ const Home = (props) => {
           scrollBy={2}
           qty={ServicesItems.length}
         />  */}
-{/* 
+        {/* 
         <CarouselFast 
           slides={ServicesItems}
           slidesShown={Math.floor(carouselWidth / slideWidth)}
@@ -150,31 +144,36 @@ const Home = (props) => {
         />  */}
         <div className="carouselFast__titleContainer">
           <h2 className="carouselFast__title">Discover Amazon</h2>
-            <SimpleLink target="#">Click para conocer más</SimpleLink>
+          <SimpleLink target="#">Click para conocer más</SimpleLink>
         </div>
         <div className="carouselFast">
-          <ScrollbarCarousel 
+          <ScrollbarCarousel
             slides={ServicesItems}
             slidesShown={Math.floor(carouselWidth / slideWidth)}
             navSize="1"
             externalPadding="1rem"
             style={{
-              backgroundColor: 'white',
-              padding: '0 1rem 10px'
-              
-          }}
+              backgroundColor: "white",
+              padding: "0 1rem 10px",
+            }}
           />
         </div>
 
+        <div className="carouselFast__titleContainer">
+          <h2 className="carouselFast__title">Discover Amazon</h2>
+          <SimpleLink target="#">Click para conocer más</SimpleLink>
+        </div>
         <div className="carouselFast">
-        <ScrollbarCarousel 
-          slides={ServicesItems}
-          slidesShown={Math.floor(carouselWidth / slideWidth)}
-          style={{
-            backgroundColor: 'white',
-            paddingBottom: '10px'
-        }}
-        /> 
+          <ScrollbarCarousel
+            slides={ServicesItems}
+            slidesShown={Math.floor(carouselWidth / slideWidth)}
+            navSize="1"
+            externalPadding="1rem"
+            style={{
+              backgroundColor: "white",
+              padding: "0 1rem 10px",
+            }}
+          />
         </div>
 
         <div className="home__sugestedProducts"></div>
@@ -182,8 +181,6 @@ const Home = (props) => {
     </main>
   );
 };
-
-
 
 //styles customizados para el componente Horizontal Carousel según docs
 // const serviceItemWidth = '200px';
