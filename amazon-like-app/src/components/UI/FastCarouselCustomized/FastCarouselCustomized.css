@@ -1,6 +1,9 @@
-.scrollContainer::-webkit-scrollbar {
-/*  appearance: unset ; */
+/* .scrollContainer::-webkit-scrollbar {
   background:  'red' !important;
+} */
+
+.scrollContainer{
+  
 }
 
 .scrollContainer::-webkit-scrollbar-thumb {
@@ -12,7 +15,11 @@
   display: none;
 }
 
+.scrollContainer::-webkit-scrollbar-track {
+  display: none;
+}
+
   .scrollContainer::-webkit-scrollbar:horizontal {
-    height: 6px !important;
+    height: 12px !important;
     
   }
