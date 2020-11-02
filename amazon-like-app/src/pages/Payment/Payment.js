@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Payment.css";
-import { useStateValue } from "../../store/StateProvider";
+// import { useStateValue } from "../../store/StateProvider";
 import CheckoutProduct from "../../components/CheckoutProduct/CheckoutProduct";
 import { Link, useHistory } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
@@ -8,12 +8,17 @@ import CurrencyFormat from "react-currency-format";
 import { basketTotal } from "../../store/reducer";
 import axios from "../../axios";
 import { db } from '../../firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { emptyBasket } from '../../store/redux/actions/basketActions';
 
 const Payment = () => {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const { basket} = useSelector(state => state.basket);
+  const { user} = useSelector(state => state.userLoginListener);
   const [succeeded, setSucceeded] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
+
+  const dispatch = useDispatch();
 
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState(null);
@@ -64,9 +69,7 @@ const Payment = () => {
     setError(null);
     setProcessing(false);
 
-    dispatch({
-      type: "EMPTY_BASKET"
-    })
+    dispatch(emptyBasket());
 
     history.replace("/orders");
 

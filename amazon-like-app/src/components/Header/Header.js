@@ -3,11 +3,14 @@ import "./Header.css";
 import { Search, ShoppingBasket } from "@material-ui/icons";
 import HeaderNavItem from "../HeaderNavItem/HeaderNavItem";
 import { Link } from "react-router-dom";
-import { useStateValue } from "../../store/StateProvider";
+// import { useStateValue } from "../../store/StateProvider";
 import { auth } from "../../firebase";
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-  const [{ basket, user }, dispatch] = useStateValue();
+
+  const {basket} = useSelector(state => state.basket);
+  const {user} = useSelector(state => state.userLoginListener);
 
   const loginHandler = () => {
     auth.signOut();

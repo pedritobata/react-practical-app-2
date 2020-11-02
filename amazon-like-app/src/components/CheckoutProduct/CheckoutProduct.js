@@ -1,17 +1,16 @@
 import React from 'react';
 import './CheckoutProduct.scss';
-import { useStateValue } from '../../store/StateProvider';
+// import { useStateValue } from '../../store/StateProvider';
+import { removeFromBasket } from '../../store/redux/actions/basketActions';
+import { useDispatch } from 'react-redux';
 
 const CheckoutProduct = ({id, title, image, price, rating, hideButton}) => {
 
-    const [{basket}, dispatch] = useStateValue();
+    const dispatch = useDispatch();
 
 
     const removeProductHandler = () => {
-        dispatch({
-            type: "REMOVE_FROM_BASKET",
-            id: id
-        });
+        dispatch(removeFromBasket(id));
     }
 
     return (

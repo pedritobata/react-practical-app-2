@@ -80,8 +80,8 @@ const Home = (props) => {
       <div className="home__banner">
         <Carousel {...getConfigurableProps()}>
           {categoriesImages.map((image) => (
-            <div>
-              <img src={image} className="banner__slideImage" />
+            <div key={image}>
+              <img src={image} className="banner__slideImage" alt={image}/>
             </div>
           ))}
         </Carousel>
@@ -150,7 +150,7 @@ const Home = (props) => {
           <ScrollbarCarousel
             slides={ServicesItems}
             slidesShown={Math.floor(carouselWidth / slideWidth)}
-            navSize="1"
+            navSize={1}
             externalPadding="1rem"
             style={{
               backgroundColor: "white",
@@ -167,7 +167,7 @@ const Home = (props) => {
           <ScrollbarCarousel
             slides={ServicesItems}
             slidesShown={Math.floor(carouselWidth / slideWidth)}
-            navSize="1"
+            navSize={1}
             externalPadding="1rem"
             style={{
               backgroundColor: "white",

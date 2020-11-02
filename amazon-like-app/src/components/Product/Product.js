@@ -1,22 +1,23 @@
 import React from 'react';
 import './Product.css';
-import { useStateValue } from '../../store/StateProvider';
+// import { useStateValue } from '../../store/StateProvider';
+import { addToBasket } from '../../store/redux/actions/basketActions';
+import { useDispatch } from 'react-redux';
+
 
 const Product = ({id, title, price, image, rating}) => {
 
-    const [{ basket }, dispatch] = useStateValue();
+    const dispatch = useDispatch();
 
     const addToBasketHandler = () => {
-        dispatch({
-            type: "ADD_TO_BASKET",
-            item: {
-                id,
-                title,
-                price,
-                image,
-                rating
-            }
-        })
+        const item = {
+            id,
+            title,
+            price,
+            image,
+            rating
+        }
+        dispatch(addToBasket(item));
     }
 
 

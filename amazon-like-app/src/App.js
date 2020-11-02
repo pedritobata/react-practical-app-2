@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import "./App.scss";
 import {
   BrowserRouter as Router,
@@ -11,40 +12,37 @@ import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
 import Checkout from "./pages/Checkout/Checkout";
 import Login from "./pages/Login/Login";
-import { useStateValue } from "./store/StateProvider";
-import { auth } from "./firebase";
 import Payment from "./pages/Payment/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./pages/Orders/Orders";
 import ProductsScreen from "./pages/ProductsScreen/ProductsScreen";
+import { userSigninListener } from './store/redux/actions/userActions';
+import { MoonLoader } from 'react-spinners/MoonLoader';
 
 const promise = loadStripe(
   "pk_test_51HWYMCI4jQHDtBgg2jk95OK58JJVTxz0Dasbx9gPSUup0483DYrqdl9tlJ5JxdYERGyfpWTzdcdkgO7qEW84utMv00XLTnQVoA"
 );
 
 function App() {
-  const [{ basket }, dispatch] = useStateValue();
+  //const [{ basket }, dispatch] = useStateValue();
+
+  const dispatch = useDispatch();
+  const {loading, error, unsubscribe} = useSelector(state => state.userLoginListener);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        dispatch({
-          type: "SET_USER",
-          user: user,
-        });
-      } else {
-        dispatch({
-          type: "SET_USER",
-          user: null,
-        });
-      }
-    });
+    dispatch(userSigninListener());
+
+  }, [userSigninListener]);
+
+
+  useEffect(() => {
 
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [unsubscribe]);
+
 
   return (
     <Router>
@@ -73,6 +71,7 @@ function App() {
           </Route>
           <Route path="/">
             <Header />
+            {/* {loading ? <MoonLoader size={100} color={"purple"}  loading={true} /> :  <Home />} */}
             <Home />
           </Route>
         </Switch>

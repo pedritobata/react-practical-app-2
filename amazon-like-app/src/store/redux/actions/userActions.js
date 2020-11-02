@@ -1,16 +1,24 @@
-import { USER_AUTH , USER_SIGNUP} from '../constants/userConstants';
+import { USER_AUTH , USER_SIGNUP, USER_LOGIN_LISTENER} from '../constants/userConstants';
 
 export const userAuth = (email,password) => {
     return {
        type : USER_AUTH,
-       payload: {email,password}
+       email,
+       password
     };
 }
 
 export const signUp = (email,password) => {
     return {
         type: USER_SIGNUP,
-        payload: {email,password}
+        email,
+        password
     }
     
+}
+
+export const userSigninListener = () => {
+    return {
+        type: USER_LOGIN_LISTENER
+    }
 }
