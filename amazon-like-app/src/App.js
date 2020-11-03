@@ -18,6 +18,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./pages/Orders/Orders";
 import ProductsScreen from "./pages/ProductsScreen/ProductsScreen";
 import { userSigninListener } from './store/redux/actions/userActions';
+import { authEbay } from './store/redux/actions/ebayActions';
 import { MoonLoader } from 'react-spinners/MoonLoader';
 
 const promise = loadStripe(
@@ -42,6 +43,10 @@ function App() {
       unsubscribe();
     };
   }, [unsubscribe]);
+
+  useEffect(() => {
+    dispatch(authEbay());
+  },[]);
 
 
   return (
