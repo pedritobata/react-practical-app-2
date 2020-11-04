@@ -1,6 +1,6 @@
 import { takeEvery } from 'redux-saga/effects';
 import { USER_AUTH ,USER_SIGNUP, USER_LOGIN_LISTENER} from '../constants/userConstants';
-import { AUTH_EBAY } from '../constants/ebayConstants';
+import { AUTH_EBAY, AUTH_EBAY_CONSENT } from '../constants/ebayConstants';
 import { signUpSaga ,userAuthSaga, userSigninListenerSaga} from './userSagas';
 import { authEbaySaga } from './ebaySagas';
 

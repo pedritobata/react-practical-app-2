@@ -9,6 +9,7 @@ import ButtonGeneric from "../../components/UI/ButtonGeneric";
 import { categoriesImages, servicesItemsData } from "./homeData";
 import ScrollbarCarousel from "../../components/UI/FastCarouselCustomized/FastCarouselCustomized";
 import SimpleLink from "../../components/UI/SimpleLink";
+import { useSelector } from 'react-redux';
 
 const getConfigurableProps = () => ({
   infiniteLoop: true,
@@ -58,6 +59,7 @@ const Home = (props) => {
   const [slideWidth, setSlideWidth] = useState(200);
   const [slideHeight, setSlideHeight] = useState(200);
   const [carouselWidth, setCarouselWidth] = useState();
+  const {consentUrl} = useSelector(state => state.authEbay);
 
   useEffect(() => {
     window.addEventListener("load", (event) => {
@@ -77,6 +79,9 @@ const Home = (props) => {
 
   return (
     <main className="home">
+      <div className="home__preBanner">
+        <a href={consentUrl} className="home__ebayLink">Load Ebay Products</a>
+      </div>
       <div className="home__banner">
         <Carousel {...getConfigurableProps()}>
           {categoriesImages.map((image) => (
