@@ -8,8 +8,9 @@ export const authEbayConsentRequest = () => {
 }
 
 
-export const authEbay = () => {
+export const authEbay = (authCode) => {
     return {
-        type: AUTH_EBAY
+        type: AUTH_EBAY,
+        authCode
     }
 }

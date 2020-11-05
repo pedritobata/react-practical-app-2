@@ -9,7 +9,9 @@ import ButtonGeneric from "../../components/UI/ButtonGeneric";
 import { categoriesImages, servicesItemsData } from "./homeData";
 import ScrollbarCarousel from "../../components/UI/FastCarouselCustomized/FastCarouselCustomized";
 import SimpleLink from "../../components/UI/SimpleLink";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { authEbay } from '../../store/redux/actions/ebayActions';
 
 const getConfigurableProps = () => ({
   infiniteLoop: true,
@@ -61,6 +63,9 @@ const Home = (props) => {
   const [carouselWidth, setCarouselWidth] = useState();
   const {consentUrl} = useSelector(state => state.authEbay);
 
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     window.addEventListener("load", (event) => {
       const carousel = document.querySelector(".carouselFast");
@@ -76,6 +81,14 @@ const Home = (props) => {
       //console.log("carouselWidth",carousel.children[0].firstChild.clientWidth);
     });
   }, []);
+
+  useEffect(() => {
+    
+    const authEbayCode = new URLSearchParams(history.location.search).get("code");
+    console.log("CODE:",decodeURI(authEbayCode));
+    dispatch(authEbay(decodeURI(authEbayCode)));
+
+  }, [history.location.search]);
 
   return (
     <main className="home">

@@ -44,10 +44,6 @@ function App() {
     };
   }, [unsubscribe]);
 
-  useEffect(() => {
-    dispatch(authEbay());
-  },[]);
-
 
   return (
     <Router>
