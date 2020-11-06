@@ -1,71 +1,81 @@
-const functions = require('firebase-functions');
+const functions = require("firebase-functions");
 const axios = require("axios");
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 const morgan = require("morgan");
 
-const express = require('express');
-const cors = require('cors');
-const stripe = require('stripe')
-('sk_test_51HWYMCI4jQHDtBggEC9fAwUEqjRIlhi3JWmQiOZ7zpjrm0htNRjJD7Jn8YbtWDdnB1GPJAYMhkP8SkowDg1J1yL100mxGWLseL');//secret
+const express = require("express");
+const cors = require("cors");
+const stripe = require("stripe")(
+  "sk_test_51HWYMCI4jQHDtBggEC9fAwUEqjRIlhi3JWmQiOZ7zpjrm0htNRjJD7Jn8YbtWDdnB1GPJAYMhkP8SkowDg1J1yL100mxGWLseL"
+); //secret
 
 const app = express();
 
-app.use(cors({origin: true}));
 app.use(express.json());
 dotenv.config();
-app.use(morgan('tiny'));
-
+app.use(morgan("tiny"));
+app.use(cors());
 
 //routes
-app.get("/", (req,res)=> {
-    res.status(200).send("Hello World!! Firebase function");
-})
-
-app.get("/token", async (req,res) => {
-    const buffer = new Buffer(process.env.EBAY_CLIENT_ID.concat(":").concat(process.env.EBAY_CLIENT_SECRET));
-    const encodedCredentials = buffer.toString('base64');
-    console.log("req.query",req.query);
-    console.log("encodedCredentials",encodedCredentials);
-    try {
-        const response = await axios.post(
-          `https://api.sandbox.ebay.com/identity/v1/oauth2/token`,
-    
-          {
-            grant_type: "authorization_code",
-            "redirect_uri" : req.query.redirectUri,
-            code: "v^1.1#i^1#f^0#I^3#p^3#r^1#t^Ul41Xzk6OEQ4ODI4NTVBQUNGQ0U4QTFEQUNDNEZGMzY4QjIyNTdfMF8xI0VeMTI4NA=="
-          },
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              Authorization: `Basic ${encodedCredentials}`,
-              "Access-Control-Allow-Origin": "*"
-            },
-          }
-        );
-        console.log("response", response.data);
-    
-       
-      } catch (error) {
-
-        console.log("Error response>>", error.response && error.response.data);
-        res.json(error.response);
-        //console.log("Error request>>", error.request);
-      }
-    
+app.get("/", (req, res) => {
+  res.status(200).send("Hello World!! Firebase function");
 });
 
+app.get("/token", async (req, res) => {
+  const buffer = new Buffer(
+    process.env.EBAY_CLIENT_ID.concat(":").concat(
+      process.env.EBAY_CLIENT_SECRET
+    )
+  );
+  const encodedCredentials = buffer.toString("base64");
+  const authCode = req.url.split("&").find(el => el.includes("code")).split("=")[1];
+  console.log("authCode >>>", authCode);
+  console.log("encodedCredentials", encodedCredentials);
+  try {
+    //***** RARISIMO!!!! para que funcione la API de ebay hay que mandarle los parametros en
+    // la URL como query params Y TAMBIEN EN EL BODY DEL REQUEST como data
+    const response = await axios.post(
+      `https://api.sandbox.ebay.com/identity/v1/oauth2/token?grant_type=authorization_code&redirect_uri=${req.query.redirectUri}&code=${authCode}`,
+      JSON.stringify({
+        grant_type: "authorization_code",
+        redirect_uri: req.query.redirectUri,
+        code:  authCode,
+      }),
+      {
+        headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${encodedCredentials}`,
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control" : "no-cache"
+      },
+      transformRequest: [function (data, headers) {
+        console.log("REQUEST FROM AXIOS DATA:", data);
+        console.log("REQUEST FROM AXIOS HEADERS:", headers);
+     
+        return data.toString();
+      }],
+    }
+    );
+    console.log("response", response.data);
+  } catch (error) {
+    // console.log("Error response>>", error.response && error.response.data);
+    // console.log("Error request>>", error.request);
+    console.log("Error>>", error);
+    res.json(error.response);
+    //console.log("Error request>>", error.request);
+  }
+});
 
 app.post("/payments/create", async (req, res) => {
-    const total = req.query.total;
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: total,
-        currency: "usd"
-    });
-    console.log("Total received from client >>>", total);
+  const total = req.query.total;
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: total,
+    currency: "usd",
+  });
+  console.log("Total received from client >>>", total);
 
-    res.status(201).send({clientSecret: paymentIntent.client_secret});
+  res.status(201).send({ clientSecret: paymentIntent.client_secret });
 });
 
-//listen 
+//listen
 exports.api = functions.https.onRequest(app);

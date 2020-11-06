@@ -10,12 +10,13 @@ const prompt = "login";
 const consentUrl = `https://auth.sandbox.ebay.com/oauth2/consents?client_id=${clientId}&redirect_uri=${redirectId}&response_type=code&scope=${scope}&prompt=${prompt}`;
 
 
-export const authEbayReducer = (state = {consentUrl}, action) => {
+export const authEbayReducer = (state = {consentUrl, redirectId}, action) => {
     switch(action.type){
         case AUTH_EBAY_CONSENT_REQUEST:
             return {
                 loading: true,
-                redirectId
+                redirectId,
+                consentUrl
             }
         default:
             return state;

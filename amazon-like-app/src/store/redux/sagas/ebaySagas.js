@@ -24,13 +24,14 @@ const testSingleScope = "https://api.ebay.com/oauth/api_scope/buy.order.readonly
 // ASK FOR USER ACCESS TOKEN
 export function* authEbaySaga(action) {
   yield put({ type: AUTH_EBAY_REQUEST });
+  const {redirectId} = yield select(state => state.authEbay);
   try {
     const response = yield axios.get(
       `http://localhost:5001/like-app-94bda/us-central1/api/token`,
 
       {
         params: {
-          redirectUri: select(state => state.redirectId),
+          redirectUri: redirectId,
           code: action.authCode
         }
     }

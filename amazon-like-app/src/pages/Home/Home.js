@@ -61,7 +61,7 @@ const Home = (props) => {
   const [slideWidth, setSlideWidth] = useState(200);
   const [slideHeight, setSlideHeight] = useState(200);
   const [carouselWidth, setCarouselWidth] = useState();
-  const {consentUrl} = useSelector(state => state.authEbay);
+  const {consentUrl, redirectId} = useSelector(state => state.authEbay);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -85,8 +85,9 @@ const Home = (props) => {
   useEffect(() => {
     
     const authEbayCode = new URLSearchParams(history.location.search).get("code");
-    console.log("CODE:",decodeURI(authEbayCode));
-    dispatch(authEbay(decodeURI(authEbayCode)));
+    console.log("CODE:",authEbayCode);
+    console.log("redirectId:",redirectId);
+    dispatch(authEbay(authEbayCode));
 
   }, [history.location.search]);
 
