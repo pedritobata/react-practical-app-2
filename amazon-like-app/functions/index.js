@@ -56,7 +56,8 @@ app.get("/token", async (req, res) => {
       }],
     }
     );
-    console.log("response", response.data);
+    // console.log("response", response.data);
+    res.json(response.data);
   } catch (error) {
     // console.log("Error response>>", error.response && error.response.data);
     // console.log("Error request>>", error.request);
