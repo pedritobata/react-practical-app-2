@@ -34,12 +34,14 @@ app.get("/token", async (req, res) => {
   try {
     //***** RARISIMO!!!! para que funcione la API de ebay hay que mandarle los parametros en
     // la URL como query params Y TAMBIEN EN EL BODY DEL REQUEST como data
+    console.log("encode scopes >>>", encodeURIComponent("https://api.ebay.com/oauth/api_scope https://api.ebay.com/oauth/api_scope/buy.order.readonly"));
     const response = await axios.post(
       `https://api.sandbox.ebay.com/identity/v1/oauth2/token?grant_type=authorization_code&redirect_uri=${req.query.redirectUri}&code=${authCode}`,
       JSON.stringify({
         grant_type: "authorization_code",
         redirect_uri: req.query.redirectUri,
         code:  authCode,
+        scope: encodeURIComponent("https://api.ebay.com/oauth/api_scope https://api.ebay.com/oauth/api_scope/buy.order.readonly https://api.ebay.com/oauth/api_scope/buy.guest.order https://api.ebay.com/oauth/api_scope/sell.marketing.readonly https://api.ebay.com/oauth/api_scope/sell.marketing https://api.ebay.com/oauth/api_scope/sell.inventory.readonly https://api.ebay.com/oauth/api_scope/sell.inventory https://api.ebay.com/oauth/api_scope/sell.account.readonly https://api.ebay.com/oauth/api_scope/sell.account https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly https://api.ebay.com/oauth/api_scope/sell.fulfillment https://api.ebay.com/oauth/api_scope/sell.analytics.readonly https://api.ebay.com/oauth/api_scope/sell.marketplace.insights.readonly https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly https://api.ebay.com/oauth/api_scope/buy.shopping.cart https://api.ebay.com/oauth/api_scope/buy.offer.auction https://api.ebay.com/oauth/api_scope/commerce.identity.readonly https://api.ebay.com/oauth/api_scope/commerce.identity.email.readonly https://api.ebay.com/oauth/api_scope/commerce.identity.phone.readonly https://api.ebay.com/oauth/api_scope/commerce.identity.address.readonly https://api.ebay.com/oauth/api_scope/commerce.identity.name.readonly https://api.ebay.com/oauth/api_scope/commerce.identity.status.readonly https://api.ebay.com/oauth/api_scope/sell.finances https://api.ebay.com/oauth/api_scope/sell.item.draft https://api.ebay.com/oauth/api_scope/sell.payment.dispute https://api.ebay.com/oauth/api_scope/sell.item")
       }),
       {
         headers: {
@@ -49,8 +51,8 @@ app.get("/token", async (req, res) => {
         "Cache-Control" : "no-cache"
       },
       transformRequest: [function (data, headers) {
-        console.log("REQUEST FROM AXIOS DATA:", data);
-        console.log("REQUEST FROM AXIOS HEADERS:", headers);
+        // console.log("REQUEST FROM AXIOS DATA:", data);
+        // console.log("REQUEST FROM AXIOS HEADERS:", headers);
      
         return data.toString();
       }],

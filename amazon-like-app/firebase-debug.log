@@ -8946,3 +8946,4 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [info] i  functions: Finished "api" in ~1s {"metadata":{"emulator":{"name":"functions"},"function":{"name":"api"},"message":"Finished \"api\" in ~1s"}}
 [debug] [2020-11-08T04:24:56.014Z] [worker-api-5805c154-9fd8-43b0-a05c-3ed0ffb7e987]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-api-5805c154-9fd8-43b0-a05c-3ed0ffb7e987]: IDLE"}}
 [debug] [2020-11-08T04:24:56.014Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-11-08T06:57:10.018Z] Received signal SIGHUP 1
