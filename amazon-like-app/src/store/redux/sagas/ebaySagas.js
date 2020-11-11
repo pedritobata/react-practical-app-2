@@ -12,6 +12,7 @@ import axios from "axios";
 export function* authEbaySaga(action) {
   yield put({ type: AUTH_EBAY_REQUEST });
   const {redirectId_prod} = yield select(state => state.authEbay);
+  
   try {
     const response = yield axios.get(
       `http://localhost:5001/like-app-94bda/us-central1/api/token`,
@@ -26,7 +27,9 @@ export function* authEbaySaga(action) {
     );
     console.log("response", response);
 
-    yield put({ type: AUTH_EBAY_SUCCESS, authToken: "" });
+    yield put({ type: AUTH_EBAY_SUCCESS, authToken: response.data.access_token });
+    localStorage.setItem("authToken", response.data.access_token);
+
   } catch (error) {
     console.log("Error response>>", error.response.data);
     console.log("Error request>>", error.request);
