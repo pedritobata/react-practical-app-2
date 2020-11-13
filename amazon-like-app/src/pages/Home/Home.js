@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Home.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -11,7 +11,7 @@ import ScrollbarCarousel from "../../components/UI/FastCarouselCustomized/FastCa
 import SimpleLink from "../../components/UI/SimpleLink";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { authEbay } from '../../store/redux/actions/ebayActions';
+import { authEbay, loadEbaySuperCategories } from '../../store/redux/actions/ebayActions';
 
 const getConfigurableProps = () => ({
   infiniteLoop: true,
@@ -62,6 +62,8 @@ const Home = (props) => {
   const [slideHeight, setSlideHeight] = useState(200);
   const [carouselWidth, setCarouselWidth] = useState();
   const {consentUrl, redirectId} = useSelector(state => state.authEbay);
+  const {authToken} = useSelector(state => state.authEbayAccess);
+  
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -87,14 +89,21 @@ const Home = (props) => {
     const authEbayCode = new URLSearchParams(history.location.search).get("code");
     console.log("CODE:",authEbayCode);
     console.log("redirectId:",redirectId);
-    dispatch(authEbay(authEbayCode));
+    if(authEbayCode)  dispatch(authEbay(authEbayCode));
 
   }, [history.location.search]);
+
+  const loadEbayProductsHandler = useCallback((e) => {
+    //console.log("TOKENAZO", authToken);
+    if(authToken){
+      dispatch(loadEbaySuperCategories(authToken));
+    }
+  },[]);
 
   return (
     <main className="home">
       <div className="home__preBanner">
-        <a href={consentUrl} className="home__ebayLink">Load Ebay Products</a>
+        <p onClick={loadEbayProductsHandler} className="home__ebayLink">Load Ebay Products</p>
       </div>
       <div className="home__banner">
         <Carousel {...getConfigurableProps()}>

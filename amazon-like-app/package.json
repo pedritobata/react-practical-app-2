@@ -34,7 +34,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.1.3",
     "redux-thunk": "^2.3.0",
-    "style-it": "^2.1.4"
+    "style-it": "^2.1.4",
+    "xml2js": "^0.4.23"
   },
   "scripts": {
     "start": "HTTPS=true react-scripts start",

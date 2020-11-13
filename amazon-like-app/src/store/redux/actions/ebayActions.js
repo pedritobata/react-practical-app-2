@@ -1,4 +1,4 @@
-import { AUTH_EBAY, AUTH_EBAY_CONSENT_REQUEST } from '../constants/ebayConstants';
+import { AUTH_EBAY, AUTH_EBAY_CONSENT_REQUEST, LOAD_EBAY_SUPER_CATEGORIES } from '../constants/ebayConstants';
 
 
 export const authEbayConsentRequest = () => {
@@ -14,3 +14,14 @@ export const authEbay = (authCode) => {
         authCode
     }
 }
+
+export const loadEbaySuperCategories = (token) => {
+    return {
+        type: LOAD_EBAY_SUPER_CATEGORIES,
+        token,
+        
+    }
+}
+
+
+
