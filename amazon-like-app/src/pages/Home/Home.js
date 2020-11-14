@@ -94,9 +94,13 @@ const Home = (props) => {
   }, [history.location.search]);
 
   const loadEbayProductsHandler = useCallback((e) => {
-    //console.log("TOKENAZO", authToken);
     if(authToken){
+      console.log("TOKEN FOUND");
       dispatch(loadEbaySuperCategories(authToken));
+    }else{
+      console.log("Redirecting to consent page...");
+      window.location.href = consentUrl;
+      // history.push(consentUrl);
     }
   },[]);
 

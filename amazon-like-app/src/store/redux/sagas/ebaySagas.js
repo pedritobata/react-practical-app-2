@@ -38,7 +38,7 @@ export function* authEbaySaga(action) {
     yield put(loadEbaySuperCategories(response.data.access_token));
 
   } catch (error) {
-    console.log("Error response>>", error.response.data);
+    console.log("Error response>>", error.response?.data);
     console.log("Error request>>", error.request);
     yield put({ type: AUTH_EBAY_FAIL, payload: error });
   }
@@ -47,11 +47,11 @@ export function* authEbaySaga(action) {
 export function* loadEbaySuperCategoriesSaga(action){
   yield put({type: LOAD_EBAY_SUPER_CATEGORIES_REQUEST});
   try{
-    console.log("loadEbaySuperCategoriesSaga");
     const categories = yield EbayClient.getCategoriesByLevelOperation({authToken: action.token, level: 1});
+    console.log("loadEbaySuperCategoriesSaga",categories);
 
   }catch(error){
-
+    console.dir(error);
   }
 
 }
