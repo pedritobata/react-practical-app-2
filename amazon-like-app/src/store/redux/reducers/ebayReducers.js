@@ -1,8 +1,12 @@
+import { act } from "react-dom/test-utils";
 import {
   AUTH_EBAY_CONSENT_REQUEST,
   AUTH_EBAY_REQUEST,
   AUTH_EBAY_SUCCESS,
   AUTH_EBAY_FAIL,
+  LOAD_EBAY_SUPER_CATEGORIES_REQUEST,
+  LOAD_EBAY_SUPER_CATEGORIES_SUCCESS,
+  LOAD_EBAY_SUPER_CATEGORIES_FAIL
 } from "../constants/ebayConstants";
 
 // CREAMOS LA URL PARA REDIRECCIONAR A LA PAGINA DE CONSENTIMIENTO DEL USER EN EBAY
@@ -54,3 +58,24 @@ export const authEbayAccessReducer = (state = {code: ""}, action) => {
           
   }
 };
+
+export const loadEbaySuperCategoriesReducer = (state = {categoriesCards: []}, action) => {
+  switch(action.type){
+    case LOAD_EBAY_SUPER_CATEGORIES_REQUEST:
+      return {
+        loading: true
+      }
+    case LOAD_EBAY_SUPER_CATEGORIES_SUCCESS:
+      return {
+        loading: false,
+        categoriesCards: action.payload
+      }
+    case LOAD_EBAY_SUPER_CATEGORIES_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
+    default:
+      return state;
+  }
+}

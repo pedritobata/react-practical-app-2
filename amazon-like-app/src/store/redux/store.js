@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import { watchAuth , watchEbayAuth, watchLoadEbaySuperCategories} from './sagas/index';
 import { signUpReducer , userAuthReducer, userLoginListenerReducer} from './reducers/userReducers';
 import {  basketReducer} from './reducers/basketReducers';
-import {  authEbayReducer, authEbayAccessReducer} from './reducers/ebayReducers';
+import {  authEbayReducer, authEbayAccessReducer, loadEbaySuperCategoriesReducer} from './reducers/ebayReducers';
 
 const rootReducer = combineReducers({
     signUp: signUpReducer,
@@ -14,6 +14,7 @@ const rootReducer = combineReducers({
     basket: basketReducer,
     authEbay: authEbayReducer,
     authEbayAccess: authEbayAccessReducer,
+    ebaySuperCategories: loadEbaySuperCategoriesReducer,
 });
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [thunk, sagaMiddleware];

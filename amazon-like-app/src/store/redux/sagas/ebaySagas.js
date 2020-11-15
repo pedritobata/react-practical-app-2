@@ -12,6 +12,7 @@ import { loadEbaySuperCategories } from '../actions/ebayActions';
 import { put,select } from "redux-saga/effects";
 import axios from "axios";
 import EbayClient from '../../../client/ebay';
+import { parseEbayXmlResponse } from '../../../utils/JsonXmlParser';
 
 
 // ASK FOR USER ACCESS TOKEN
@@ -48,9 +49,13 @@ export function* loadEbaySuperCategoriesSaga(action){
   yield put({type: LOAD_EBAY_SUPER_CATEGORIES_REQUEST});
   try{
     const categories = yield EbayClient.getCategoriesByLevelOperation({authToken: action.token, level: 1});
-    console.log("loadEbaySuperCategoriesSaga",categories);
+    //console.log("loadEbaySuperCategoriesSaga",categories);
+    console.log("parseEbayXmlResponse", parseEbayXmlResponse(categories));
+    yield put({type: LOAD_EBAY_SUPER_CATEGORIES_SUCCESS, 
+      payload: parseEbayXmlResponse(categories).GetCategoriesResponse.CategoryArray.Category});
 
   }catch(error){
+    yield put({type: LOAD_EBAY_SUPER_CATEGORIES_FAIL, payload: error});
     console.dir(error);
   }
 
