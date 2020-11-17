@@ -8,12 +8,14 @@ import {
   LOAD_EBAY_SUPER_CATEGORIES_SUCCESS,
   LOAD_EBAY_SUPER_CATEGORIES_FAIL
 } from "../constants/ebayConstants";
+import { MAX_NUMBER_OF_CARD_CATEGORIES, MAX_NUMBER_OF_CAROUSEL_CATEGORIES } from '../../../client/constants';
 import { loadEbaySuperCategories } from '../actions/ebayActions';
 import { put,select } from "redux-saga/effects";
 import axios from "axios";
 import EbayClient from '../../../client/ebay';
 import { parseEbayXmlResponse } from '../../../utils/JsonXmlParser';
 import { generateRandomNumbersBetween } from '../../../utils/utils';
+import { db } from '../../../firebase';
 
 
 // ASK FOR USER ACCESS TOKEN
@@ -55,20 +57,35 @@ export function* loadEbaySuperCategoriesSaga(action){
       throw new Error("Unable to load Super Categories");
     }
     const superCategories = parsedCategoriesResponse.GetCategoriesResponse.CategoryArray.Category;
-    //Escogemos 9 categorias al azar y las guardamos en el store
+    //Obtenemos las urls de las imagenes pre guardadas en firestore para la supercategorias de Ebay
+    const superCategoriesImagesResponse = yield db.collection("superCategories").get();
+    const superCategoriesImages = Array.from(superCategoriesImagesResponse).reduce((acc, curr) => {
+      console.log("curr",curr);
+      return Object.assign(acc, {[curr.data().categoryId]: curr.data().imageUrl});
+     
+    }, {});
+    console.log("superCategoriesImages", superCategoriesImages);
+    //Escogemos 9 categorias al azar y las guardamos en el store con sus imagenes
     const pickedSuperCategories = 
-    generateRandomNumbersBetween(0, superCategories.length, 9)
+    generateRandomNumbersBetween(0, superCategories.length, MAX_NUMBER_OF_CARD_CATEGORIES + MAX_NUMBER_OF_CAROUSEL_CATEGORIES)
     .map(index => {
       return {
         categoryId: superCategories[index].CategoryID,
-        name: superCategories[index].CategoryName
+        name: superCategories[index].CategoryName,
+        image: superCategoriesImages[superCategories[index].CategoryID]
       }
     });
     
+    console.log("pickedSuperCategories",pickedSuperCategories);
     yield put({type: LOAD_EBAY_SUPER_CATEGORIES_SUCCESS, 
       payload: pickedSuperCategories});
+
+
+
+
+
+
       
-      console.log("pickedSuperCategories",pickedSuperCategories);
       //Obteniendo un producto representativo de cada super categoría
       const itemsByCategoryRawFirst3 = yield EbayClient.getItemsByCategoryId(
         pickedSuperCategories.slice(0,3).map(cat => cat.categoryId),
