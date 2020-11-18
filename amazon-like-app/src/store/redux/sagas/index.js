@@ -1,8 +1,8 @@
 import { takeEvery } from 'redux-saga/effects';
 import { USER_AUTH ,USER_SIGNUP, USER_LOGIN_LISTENER} from '../constants/userConstants';
-import { AUTH_EBAY, LOAD_EBAY_SUPER_CATEGORIES } from '../constants/ebayConstants';
+import { AUTH_EBAY, LOAD_EBAY_SUPER_CATEGORIES , LOAD_EBAY_ITEMS_CAROUSEL} from '../constants/ebayConstants';
 import { signUpSaga ,userAuthSaga, userSigninListenerSaga} from './userSagas';
-import { authEbaySaga, loadEbaySuperCategoriesSaga } from './ebaySagas';
+import { authEbaySaga, loadEbaySuperCategoriesSaga , loadEbayItemsCarouselSaga} from './ebaySagas';
 
 
 export function* watchAuth(){
@@ -17,4 +17,8 @@ export function* watchEbayAuth(){
 
 export function* watchLoadEbaySuperCategories(){
     yield takeEvery(LOAD_EBAY_SUPER_CATEGORIES, loadEbaySuperCategoriesSaga);
+}
+
+export function* watchLoadEbayItemsCarousel(){
+    yield takeEvery(LOAD_EBAY_ITEMS_CAROUSEL, loadEbayItemsCarouselSaga);
 }

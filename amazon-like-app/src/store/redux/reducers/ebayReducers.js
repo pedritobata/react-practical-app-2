@@ -7,7 +7,10 @@ import {
   LOAD_EBAY_SUPER_CATEGORIES_REQUEST,
   LOAD_EBAY_SUPER_CATEGORIES_SUCCESS,
   LOAD_EBAY_SUPER_CATEGORIES_CARDS_SUCCESS,
-  LOAD_EBAY_SUPER_CATEGORIES_FAIL
+  LOAD_EBAY_SUPER_CATEGORIES_FAIL,
+  LOAD_EBAY_ITEMS_CAROUSEL_REQUEST,
+  LOAD_EBAY_ITEMS_CAROUSEL_SUCCESS,
+  LOAD_EBAY_ITEMS_CAROUSEL_FAIL
 } from "../constants/ebayConstants";
 
 // CREAMOS LA URL PARA REDIRECCIONAR A LA PAGINA DE CONSENTIMIENTO DEL USER EN EBAY
@@ -64,10 +67,32 @@ export const loadEbaySuperCategoriesReducer = (state = {categoriesCards: []}, ac
       }
     case LOAD_EBAY_SUPER_CATEGORIES_CARDS_SUCCESS:
       return {
+        ...state,
         loading: false,
         categoriesCards: action.payload
       }
     case LOAD_EBAY_SUPER_CATEGORIES_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
+    default:
+      return state;
+  }
+}
+
+export const loadEbayItemsCarouselReducer = (state = {itemsCarousel: {}}, action) => {
+  switch(action.type){
+    case LOAD_EBAY_ITEMS_CAROUSEL_REQUEST:
+      return {
+        loading: true
+      }
+    case LOAD_EBAY_ITEMS_CAROUSEL_SUCCESS:
+      return {
+        loading: false,
+        itemsCarousel: action.payload
+      }
+    case LOAD_EBAY_ITEMS_CAROUSEL_FAIL:
       return {
         loading: false,
         error: action.payload

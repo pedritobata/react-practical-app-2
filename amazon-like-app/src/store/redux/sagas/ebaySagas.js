@@ -6,7 +6,11 @@ import {
   LOAD_EBAY_SUPER_CATEGORIES_CARDS_SUCCESS,
   LOAD_EBAY_SUPER_CATEGORIES_REQUEST,
   LOAD_EBAY_SUPER_CATEGORIES_SUCCESS,
-  LOAD_EBAY_SUPER_CATEGORIES_FAIL
+  LOAD_EBAY_SUPER_CATEGORIES_FAIL,
+  LOAD_EBAY_ITEMS_CAROUSEL,
+  LOAD_EBAY_ITEMS_CAROUSEL_REQUEST,
+  LOAD_EBAY_ITEMS_CAROUSEL_SUCCESS,
+  LOAD_EBAY_ITEMS_CAROUSEL_FAIL
 } from "../constants/ebayConstants";
 import { MAX_NUMBER_OF_CARD_CATEGORIES, MAX_NUMBER_OF_CAROUSEL_CATEGORIES } from '../../../client/constants';
 import { loadEbaySuperCategories } from '../actions/ebayActions';
@@ -59,12 +63,10 @@ export function* loadEbaySuperCategoriesSaga(action){
     const superCategories = parsedCategoriesResponse.GetCategoriesResponse.CategoryArray.Category;
     //Obtenemos las urls de las imagenes pre guardadas en firestore para la supercategorias de Ebay
     const superCategoriesImagesResponse = yield db.collection("superCategories").get();
-    const superCategoriesImages = Array.from(superCategoriesImagesResponse).reduce((acc, curr) => {
-      console.log("curr",curr);
+    const superCategoriesImages = Array.from(superCategoriesImagesResponse.docs).reduce((acc, curr) => {
       return Object.assign(acc, {[curr.data().categoryId]: curr.data().imageUrl});
      
     }, {});
-    console.log("superCategoriesImages", superCategoriesImages);
     //Escogemos 9 categorias al azar y las guardamos en el store con sus imagenes
     const pickedSuperCategories = 
     generateRandomNumbersBetween(0, superCategories.length, MAX_NUMBER_OF_CARD_CATEGORIES + MAX_NUMBER_OF_CAROUSEL_CATEGORIES)
@@ -80,28 +82,36 @@ export function* loadEbaySuperCategoriesSaga(action){
     yield put({type: LOAD_EBAY_SUPER_CATEGORIES_SUCCESS, 
       payload: pickedSuperCategories});
 
-
-
-
-
-
-      
-      //Obteniendo un producto representativo de cada super categoría
-      const itemsByCategoryRawFirst3 = yield EbayClient.getItemsByCategoryId(
-        pickedSuperCategories.slice(0,3).map(cat => cat.categoryId),
-        3
-      );
-      console.log("itemsByCategoryRawFirst3",itemsByCategoryRawFirst3);
-      const itemsByCategoryFirst3 = parseEbayXmlResponse(itemsByCategoryRawFirst3).findItemsByCategoryResponse.searchResult.item;
-      console.log("itemsByCategoryFirst3",
-      itemsByCategoryFirst3
-      );
       yield put({type: LOAD_EBAY_SUPER_CATEGORIES_CARDS_SUCCESS, 
-        payload: ''});
+        payload: pickedSuperCategories.slice(0,MAX_NUMBER_OF_CARD_CATEGORIES)});
+
+        yield put({type: LOAD_EBAY_ITEMS_CAROUSEL});
 
   }catch(error){
     yield put({type: LOAD_EBAY_SUPER_CATEGORIES_FAIL, payload: error});
     console.log(error);
   }
+
+}
+
+export function* loadEbayItemsCarouselSaga(action){
+  yield put({type: LOAD_EBAY_ITEMS_CAROUSEL_REQUEST});
+  const {superCategories} = yield select(state => state.ebaySuperCategories);
+  
+  const itemsCarousel = {};
+  try{
+    for(let cat of superCategories.slice(MAX_NUMBER_OF_CARD_CATEGORIES)){
+      const itemsByCategoryRaw = yield EbayClient.getItemsByCategoryId(cat.categoryId, 12);
+      itemsCarousel[cat.categoryId] = {
+        title: cat.name,
+        items: parseEbayXmlResponse(itemsByCategoryRaw).findItemsByCategoryResponse.searchResult.item
+      };
+    }
+    yield put({type: LOAD_EBAY_ITEMS_CAROUSEL_SUCCESS, payload: itemsCarousel});
+  }catch(error){
+    yield put({type: LOAD_EBAY_ITEMS_CAROUSEL_FAIL, payload: error});
+    console.log("Error al obtener items para Carouseles", error);
+  }
+
 
 }

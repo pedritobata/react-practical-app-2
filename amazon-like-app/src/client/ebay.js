@@ -44,15 +44,15 @@ class EbayClient {
   }
 
 
-  static async getItemsByCategoryId(categoryIdArray, entriesPerPage){
+  static async getItemsByCategoryId(categoryId, entriesPerPage){
     const url = `https://svcs.ebay.com/services/search/FindingService/v1`;
     const headers = {
       "X-EBAY-SOA-SECURITY-APPNAME": CLIENT_ID_PROD,
       "X-EBAY-SOA-OPERATION-NAME": "findItemsByCategory"
     };
-    console.log("categoryIdArray",categoryIdArray);
+    console.log("categoryId",categoryId);
     const body = {
-      categoryId: categoryIdArray[0],
+      categoryId: categoryId,
       // "categoryId": categoryIdArray[1],
       // "categoryId": categoryIdArray[2],
       paginationInput: {
