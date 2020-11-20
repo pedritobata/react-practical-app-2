@@ -10,7 +10,7 @@ import { categoriesImages, servicesItemsData } from "./homeData";
 import ScrollbarCarousel from "../../components/UI/FastCarouselCustomized/FastCarouselCustomized";
 import SimpleLink from "../../components/UI/SimpleLink";
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { authEbay, loadEbaySuperCategories } from '../../store/redux/actions/ebayActions';
 
 const getConfigurableProps = () => ({
@@ -63,6 +63,8 @@ const Home = (props) => {
   const [carouselWidth, setCarouselWidth] = useState();
   const {consentUrl, redirectId} = useSelector(state => state.authEbay);
   const {authToken} = useSelector(state => state.authEbayAccess);
+
+  const { categoriesCards } = useSelector(state => state.ebaySuperCategories);
   
 
   const history = useHistory();
@@ -120,29 +122,47 @@ const Home = (props) => {
       </div>
       <div className="home__container">
         <div className="home__categoriesCards home__categoriesCards--top">
-          <CategoryCard
-            title="Computadoras y Accesorios"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_PC_2x._SY608_CB431800964_.jpg"
-            description=""
-            target="/products"
-            linkText="Comprar ahora"
-          />
-          <CategoryCard
-            title="Encuentra tu TV ideal"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_TV_2X._SY608_CB432517900_.jpg"
-            description=""
-            target="/products"
-            linkText="Ver más"
-          />
-          <CategoryCard
-            title="AmazonBasics"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_260x260._SY608_CB442725065_.jpg"
-            description=""
-            target="/products"
-            linkText="Ver más"
-          />
+          {
+            categoriesCards?.length > 0 ? categoriesCards.map(item => {
+              const randomLinkText = Math.random() > 0.5 ? "Comprar ahora" : "Ver más";
+              return  <CategoryCard
+                        title={item.name}
+                        image={item.image}
+                        description=""
+                        target="/products"
+                        linkText={randomLinkText}
+                      />
+            }) : 
+            (<>
+            <CategoryCard
+              title="Computadoras y Accesorios"
+              image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_PC_2x._SY608_CB431800964_.jpg"
+              description=""
+              target="/products"
+              linkText="Comprar ahora"
+            />
+            <CategoryCard
+              title="Encuentra tu TV ideal"
+              image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_TV_2X._SY608_CB432517900_.jpg"
+              description=""
+              target="/products"
+              linkText="Ver más"
+            />
+            <CategoryCard
+              title="AmazonBasics"
+              image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_260x260._SY608_CB442725065_.jpg"
+              description=""
+              target="/products"
+              linkText="Ver más"
+            />
+            </>
+            )
+          }
+          
           <CategoryCard title="Sign in for the best experience">
-            <ButtonGeneric title="Sign in securely" styles="light" />
+            <Link to="/login">
+              <ButtonGeneric title="Sign in securely" styles="light" />
+            </Link>
           </CategoryCard>
         </div>
 

@@ -63,7 +63,7 @@ class EbayClient {
 
     const xmlBody = await buildEbayXmlRequest("findItemsByCategoryRequest","http://www.ebay.com/marketplace/search/v1/services",body) ;
     
-    console.log("xmlBody >>>", xmlBody);
+    //console.log("xmlBody >>>", xmlBody);
     return await axios.post(
       this.corsHeader + url,
       xmlBody,
