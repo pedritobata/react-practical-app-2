@@ -4,6 +4,7 @@ import {
   AUTH_EBAY_REQUEST,
   AUTH_EBAY_SUCCESS,
   AUTH_EBAY_FAIL,
+  AUTH_EBAY_RESET,
   LOAD_EBAY_SUPER_CATEGORIES_REQUEST,
   LOAD_EBAY_SUPER_CATEGORIES_SUCCESS,
   LOAD_EBAY_SUPER_CATEGORIES_CARDS_SUCCESS,
@@ -48,6 +49,11 @@ export const authEbayAccessReducer = (state = {code: ""}, action) => {
             loading: false,
             error: action.payload
         };
+    case AUTH_EBAY_RESET:
+      return {
+        loading: false,
+        authToken: ""
+      }
      default:
          return state;
           
@@ -58,7 +64,7 @@ export const loadEbaySuperCategoriesReducer = (state = {categoriesCards: []}, ac
   switch(action.type){
     case LOAD_EBAY_SUPER_CATEGORIES_REQUEST:
       return {
-        loading: true
+        loading: true,
       }
     case LOAD_EBAY_SUPER_CATEGORIES_SUCCESS:
       return {

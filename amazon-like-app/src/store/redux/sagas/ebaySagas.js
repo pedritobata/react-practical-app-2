@@ -3,6 +3,7 @@ import {
   AUTH_EBAY_REQUEST,
   AUTH_EBAY_SUCCESS,
   AUTH_EBAY_FAIL,
+  AUTH_EBAY_RESET,
   LOAD_EBAY_SUPER_CATEGORIES_CARDS_SUCCESS,
   LOAD_EBAY_SUPER_CATEGORIES_REQUEST,
   LOAD_EBAY_SUPER_CATEGORIES_SUCCESS,
@@ -57,8 +58,13 @@ export function* loadEbaySuperCategoriesSaga(action){
   try{
     const categoriesResponse = yield EbayClient.getCategoriesByLevelOperation(action.token, 1);
     const parsedCategoriesResponse = parseEbayXmlResponse(categoriesResponse);
+    // console.log("parsedCategoriesResponse", parsedCategoriesResponse);
     if(parsedCategoriesResponse.GetCategoriesResponse.Ack === "Failure"){
-      throw new Error("Unable to load Super Categories");
+      if(parsedCategoriesResponse.GetCategoriesResponse.Errors.LongMessage.includes("is expired")){
+        localStorage.removeItem("authToken");
+        yield put({type: AUTH_EBAY_RESET});
+      }
+      throw new Error(`Unable to load Super Categories: ${parsedCategoriesResponse.GetCategoriesResponse.Errors.LongMessage}`);
     }
     const superCategories = parsedCategoriesResponse.GetCategoriesResponse.CategoryArray.Category;
     //Obtenemos las urls de las imagenes pre guardadas en firestore para la supercategorias de Ebay

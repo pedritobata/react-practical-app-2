@@ -12,6 +12,8 @@ import SimpleLink from "../../components/UI/SimpleLink";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { authEbay, loadEbaySuperCategories } from '../../store/redux/actions/ebayActions';
+import { MoonLoader} from 'react-spinners';
+
 
 const getConfigurableProps = () => ({
   infiniteLoop: true,
@@ -64,7 +66,7 @@ const Home = (props) => {
   const {consentUrl, redirectId} = useSelector(state => state.authEbay);
   const {authToken} = useSelector(state => state.authEbayAccess);
 
-  const { categoriesCards } = useSelector(state => state.ebaySuperCategories);
+  const { categoriesCards, error: errorSuperCategories, loading: loadingSuperCategories } = useSelector(state => state.ebaySuperCategories);
   
 
   const history = useHistory();
@@ -102,15 +104,18 @@ const Home = (props) => {
     }else{
       console.log("Redirecting to consent page...");
       window.location.href = consentUrl;
-      // history.push(consentUrl);
     }
   },[]);
 
+  useEffect(() => {
+    if(!categoriesCards || categoriesCards.length === 0){
+      dispatch(loadEbaySuperCategories(authToken));
+    }
+  }, [categoriesCards]);
+
   return (
     <main className="home">
-      <div className="home__preBanner">
-        <p onClick={loadEbayProductsHandler} className="home__ebayLink">Load Ebay Products</p>
-      </div>
+     
       <div className="home__banner">
         <Carousel {...getConfigurableProps()}>
           {categoriesImages.map((image) => (
@@ -123,8 +128,37 @@ const Home = (props) => {
       <div className="home__container">
         <div className="home__categoriesCards home__categoriesCards--top">
           {
+           errorSuperCategories ? 
+            
+              <div className="home__preBanner">
+                <p onClick={loadEbayProductsHandler} className="home__ebayLink">Load Ebay Products</p>
+              </div>
+            //<>
+            // <CategoryCard
+            //   title="Computers and Accesories"
+            //   image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_PC_2x._SY608_CB431800964_.jpg"
+            //   description=""
+            //   target="/products"
+            //   linkText="Buy now"
+            // />
+            // <CategoryCard
+            //   title="Find your ideal TV"
+            //   image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_TV_2X._SY608_CB432517900_.jpg"
+            //   description=""
+            //   target="/products"
+            //   linkText="See more"
+            // />
+            // <CategoryCard
+            //   title="AmazonBasics"
+            //   image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_260x260._SY608_CB442725065_.jpg"
+            //   description=""
+            //   target="/products"
+            //   linkText="See more"
+            // />
+            // </>
+            : loadingSuperCategories ? <MoonLoader size={100} color={"purple"}  loading={true}  /> : 
             categoriesCards?.length > 0 ? categoriesCards.map(item => {
-              const randomLinkText = Math.random() > 0.5 ? "Comprar ahora" : "Ver más";
+              const randomLinkText = Math.random() > 0.5 ? "Buy now" : "See more";
               return  <CategoryCard
                         title={item.name}
                         image={item.image}
@@ -132,31 +166,8 @@ const Home = (props) => {
                         target="/products"
                         linkText={randomLinkText}
                       />
-            }) : 
-            (<>
-            <CategoryCard
-              title="Computers and Accesories"
-              image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_PC_2x._SY608_CB431800964_.jpg"
-              description=""
-              target="/products"
-              linkText="Buy now"
-            />
-            <CategoryCard
-              title="Find your ideal TV"
-              image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_TV_2X._SY608_CB432517900_.jpg"
-              description=""
-              target="/products"
-              linkText="See more"
-            />
-            <CategoryCard
-              title="AmazonBasics"
-              image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_260x260._SY608_CB442725065_.jpg"
-              description=""
-              target="/products"
-              linkText="See more"
-            />
-            </>
-            )
+            }) : null
+            
           }
           
           <CategoryCard title="Sign in for the best experience">
@@ -183,23 +194,7 @@ const Home = (props) => {
           />
         </div>
 
-        <div className="carouselFast__titleContainer">
-          <h2 className="carouselFast__title">Discover Amazon</h2>
-          <SimpleLink target="#">See more</SimpleLink>
-        </div>
-        <div className="carouselFast">
-          <ScrollbarCarousel
-            slides={ServicesItems}
-            slidesShown={Math.floor(carouselWidth / slideWidth)}
-            navSize={1}
-            externalPadding="1rem"
-            style={{
-              backgroundColor: "white",
-              padding: "0 1rem 10px",
-            }}
-          />
-        </div>
-
+       
         <div className="home__sugestedProducts"></div>
       </div>
     </main>
