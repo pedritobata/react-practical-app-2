@@ -12,56 +12,30 @@ export const categoriesImages = [
 
 export const servicesItemsData = [
     {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubbler_Languages_es_US_400x400._CB447360234_.png",
-        title: "Compra en  8 idiomas"
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/English/Fuji_Bubble_8Languages_en_US_updated_2x._CB445837684_.png",
+        title: "Shop in 8 languages"
     },
     {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_Currency_es_US_2X._CB448986714_.jpg",
-        title: "Compra en 64 monedas"
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/October/BubbleShoveler/AIS_Bubble_Currency_en_US_2X._CB451228332_.jpg",
+        title: "Shop in 60+ currencies"
     },
     {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/March/Bubbles/Fuji_Bubble_Transparent_es_US_2x._CB420159269_.png",
-        title: "Costos transparentes"
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/October/BubbleShoveler/AIS_Bubble_SecurePayment_en_US_2X._CB451228335_.jpg",
+        title: "Secure payments"
     },
     {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_ImportFees_es_US_2X._CB448986709_.jpg",
-        title: "Tasas de importación estimadas"
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/October/BubbleShoveler/AIS_Bubble_ImportFees_V2_en_US_2x._CB447531871_.png",
+        title: "Estimated import fees"
     },
 
     {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_TrackOrder_es_US_2X._CB448986708_.jpg",
-        title: "Rastrea tus pedidos"
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/October/BubbleShoveler/AIS_Bubble_TrackPackage_en_US_2X._CB451228334_.jpg",
+        title: "Track your package"
     },
     {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
-        title: "Atención al Cliente"
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/October/BubbleShoveler/AIS_Bubble_247CS_V2_en_US_2x._CB447531888_.png",
+        title: "24/7 Customer Service"
     },
-
-    {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_TrackOrder_es_US_2X._CB448986708_.jpg",
-        title: "Rastrea tus pedidos"
-    },
-    {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
-        title: "Atención al Cliente"
-    },
-    {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_TrackOrder_es_US_2X._CB448986708_.jpg",
-        title: "Rastrea tus pedidos"
-    },
-    {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
-        title: "Atención al Cliente"
-    },
-    {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_TrackOrder_es_US_2X._CB448986708_.jpg",
-        title: "Rastrea tus pedidos"
-    },
-    {
-        image: "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Projects/HelpPage/BubbleShoveler/Spanish/Fuji_Bubble_CS247_es_US_2X._CB448986714_.jpg",
-        title: "Atención al Cliente"
-    },
-
 
     
 

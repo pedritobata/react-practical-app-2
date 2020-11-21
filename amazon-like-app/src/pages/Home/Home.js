@@ -135,25 +135,25 @@ const Home = (props) => {
             }) : 
             (<>
             <CategoryCard
-              title="Computadoras y Accesorios"
+              title="Computers and Accesories"
               image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_PC_2x._SY608_CB431800964_.jpg"
               description=""
               target="/products"
-              linkText="Comprar ahora"
+              linkText="Buy now"
             />
             <CategoryCard
-              title="Encuentra tu TV ideal"
+              title="Find your ideal TV"
               image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_TV_2X._SY608_CB432517900_.jpg"
               description=""
               target="/products"
-              linkText="Ver más"
+              linkText="See more"
             />
             <CategoryCard
               title="AmazonBasics"
               image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_260x260._SY608_CB442725065_.jpg"
               description=""
               target="/products"
-              linkText="Ver más"
+              linkText="See more"
             />
             </>
             )
@@ -166,37 +166,9 @@ const Home = (props) => {
           </CategoryCard>
         </div>
 
-        {/* <CarouselHorizontal
-          title="Descubre Amazon"
-          linkText="Más Información"
-          items={ServicesItems}
-          itemStyle={itemStyle}
-          innerWrapperStyle={innerWrapperStyle}
-          scrollBy={2}
-          qty={ServicesItems.length}
-        />
-        <CarouselHorizontal
-          title="Descubre Amazon"
-          linkText="Más Información"
-          items={ServicesItems}
-          itemStyle={itemStyle}
-          innerWrapperStyle={innerWrapperStyle}
-          scrollBy={2}
-          qty={ServicesItems.length}
-        />  */}
-        {/* 
-        <CarouselFast 
-          slides={ServicesItems}
-          slidesShown={Math.floor(carouselWidth / slideWidth)}
-        />
-
-        <CarouselFast 
-          slides={ServicesItems}
-          slidesShown={Math.floor(carouselWidth / slideWidth)}
-        />  */}
         <div className="carouselFast__titleContainer">
           <h2 className="carouselFast__title">Discover Amazon</h2>
-          <SimpleLink target="#">Click para conocer más</SimpleLink>
+          <SimpleLink target="#">See more</SimpleLink>
         </div>
         <div className="carouselFast">
           <ScrollbarCarousel
@@ -213,7 +185,7 @@ const Home = (props) => {
 
         <div className="carouselFast__titleContainer">
           <h2 className="carouselFast__title">Discover Amazon</h2>
-          <SimpleLink target="#">Click para conocer más</SimpleLink>
+          <SimpleLink target="#">See more</SimpleLink>
         </div>
         <div className="carouselFast">
           <ScrollbarCarousel
@@ -234,20 +206,5 @@ const Home = (props) => {
   );
 };
 
-//styles customizados para el componente Horizontal Carousel según docs
-// const serviceItemWidth = '200px';
-// const serviceItemHeight = '200px';
-
-// const itemStyle = {
-//   width: serviceItemWidth,
-//   height: serviceItemHeight,
-//   marginRight: '10px',
-//   outline: 'none'
-// }
-
-// const innerWrapperStyle = {
-//   padding: "0 1rem",
-//   width: `calc((${serviceItemWidth} + 10px) * ${ServicesItems.length})`
-// }
 
 export default Home;
