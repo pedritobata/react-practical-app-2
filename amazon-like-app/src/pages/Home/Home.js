@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { authEbay, loadEbaySuperCategories } from '../../store/redux/actions/ebayActions';
 import { MoonLoader} from 'react-spinners';
+import  Backdrop from "../../components/UI/Backdrop";
 
 
 const getConfigurableProps = () => ({
@@ -65,6 +66,7 @@ const Home = (props) => {
   const [carouselWidth, setCarouselWidth] = useState();
   const {consentUrl, redirectId} = useSelector(state => state.authEbay);
   const {authToken} = useSelector(state => state.authEbayAccess);
+  const {itemsCarousel, loading: loadingItemsCarousel} = useSelector(state => state.loadEbayItemsCarousel);
 
   const { categoriesCards, error: errorSuperCategories, loading: loadingSuperCategories } = useSelector(state => state.ebaySuperCategories);
   
@@ -130,9 +132,13 @@ const Home = (props) => {
           {
            errorSuperCategories ? 
             
-              <div className="home__preBanner">
-                <p onClick={loadEbayProductsHandler} className="home__ebayLink">Load Ebay Products</p>
-              </div>
+              <Backdrop myStyle={{flexDirection: "column"}}>
+                {
+                  loadingSuperCategories ? <MoonLoader color={"white"}  loading={true}  /> :
+                  <a href="#" onClick={loadEbayProductsHandler} className="home__ebayLink">Load Ebay Products</a>
+                }
+                <p>Click to get products from the <i className="fab fa-ebay"></i> Api</p>
+              </Backdrop>
             //<>
             // <CategoryCard
             //   title="Computers and Accesories"
@@ -193,6 +199,32 @@ const Home = (props) => {
             }}
           />
         </div>
+
+            {
+              itemsCarousel !== {} ? Object.values(itemsCarousel).map(category => (
+                <>
+                Hola
+                {/* 
+                <div className="carouselFast__titleContainer">
+                <h2 className="carouselFast__title">{category.title}</h2>
+                <SimpleLink target="#">Shop now</SimpleLink>
+              </div>
+              <div className="carouselFast">
+                <ScrollbarCarousel
+                  slides={category.items}
+                  slidesShown={Math.floor(carouselWidth / slideWidth)}
+                  navSize={1}
+                  externalPadding="1rem"
+                  style={{
+                    backgroundColor: "white",
+                    padding: "0 1rem 10px",
+                  }}
+                />
+              </div> */}
+              </>
+              )) : loadingItemsCarousel ? <MoonLoader size={100} color={"purple"}  loading={true}  />  : null
+            }
+
 
        
         <div className="home__sugestedProducts"></div>

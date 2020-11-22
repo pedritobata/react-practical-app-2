@@ -100,6 +100,7 @@ export const loadEbayItemsCarouselReducer = (state = {itemsCarousel: {}}, action
       }
     case LOAD_EBAY_ITEMS_CAROUSEL_FAIL:
       return {
+        itemsCarousel: {},
         loading: false,
         error: action.payload
       }
